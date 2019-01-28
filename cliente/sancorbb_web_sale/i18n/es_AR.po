@@ -1,0 +1,161 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sancorbb_web_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-16 19:36+0000\n"
+"PO-Revision-Date: 2018-11-16 16:37-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_AR\n"
+"X-Generator: Poedit 2.0.8\n"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,code:sancorbb_web_sale.res_IVA_LIB
+msgid "10"
+msgstr "10"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,code:sancorbb_web_sale.res_IVARI_AP
+msgid "11"
+msgstr "11"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,code:sancorbb_web_sale.res_EVENTUAL
+msgid "12"
+msgstr "12"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,code:sancorbb_web_sale.res_MON_SOCIAL
+msgid "13"
+msgstr "13"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,code:sancorbb_web_sale.res_EVENTUAL_SOCIAL
+msgid "14"
+msgstr "14"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,code:sancorbb_web_sale.res_IVARIFM
+msgid "1FM"
+msgstr "1FM"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_CLI_EXT
+msgid "Cliente del Exterior"
+msgstr "Cliente del Exterior"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_CF
+msgid "Consumidor Final"
+msgstr "Consumidor Final"
+
+#. module: sancorbb_web_sale
+#: model:ir.model,name:sancorbb_web_sale.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sancorbb_web_sale
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_res_partner_main_id_category_id
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_res_users_main_id_category_id
+msgid "ID Document Type"
+msgstr "ID Document Type"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVA_LIB
+msgid "IVA Liberado – Ley Nº 19.640"
+msgstr "IVA Liberado – Ley Nº 19.640"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVARI
+msgid "IVA Responsable Inscripto"
+msgstr "IVA Responsable Inscripto"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVARIFM
+msgid "IVA Responsable Inscripto Factura M"
+msgstr "IVA Responsable Inscripto Factura M"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVARI_AP
+msgid "IVA Responsable Inscripto – Agente de Percepción"
+msgstr "IVA Responsable Inscripto – Agente de Percepción"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVARNI
+msgid "IVA Responsable no Inscripto"
+msgstr "IVA Responsable no Inscripto"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVAE
+msgid "IVA Sujeto Exento"
+msgstr "IVA Sujeto Exento"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_IVANR
+msgid "IVA no Responsable"
+msgstr "IVA no Responsable"
+
+#. module: sancorbb_web_sale
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_res_partner_main_id_number
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_res_users_main_id_number
+msgid "Main ID Number"
+msgstr "Número Documento"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_MON_SOCIAL
+msgid "Monotributista Social"
+msgstr "Monotributista Social"
+
+#. module: sancorbb_web_sale
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_sale_order_payment_tx_state
+msgid "Payment State"
+msgstr "Estado de Pago"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_EVENTUAL
+msgid "Pequeño Contribuyente Eventual"
+msgstr "Pequeño Contribuyente Eventual"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_EVENTUAL_SOCIAL
+msgid "Pequeño Contribuyente Eventual Social"
+msgstr "Pequeño Contribuyente Eventual Social"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_EXT
+msgid "Proveedor del Exterior"
+msgstr "Proveedor del Exterior"
+
+#. module: sancorbb_web_sale
+#: model:ir.model,name:sancorbb_web_sale.model_sale_order
+msgid "Quotation"
+msgstr "Pedido"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_RM
+msgid "Responsable Monotributo"
+msgstr "Responsable Monotributo"
+
+#. module: sancorbb_web_sale
+#: model:afip.responsability.type,name:sancorbb_web_sale.res_NOCATEG
+msgid "Sujeto no Categorizado"
+msgstr "Sujeto no Categorizado"
+
+#. module: sancorbb_web_sale
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_res_partner_afip_responsability_type_id
+#: model:ir.model.fields,field_description:sancorbb_web_sale.field_res_users_afip_responsability_type_id
+msgid "Tax Responsibility Type"
+msgstr "Condición de IVA"
+
+#. module: sancorbb_web_sale
+#: model:ir.model,name:sancorbb_web_sale.model_res_partner_id_category
+msgid "res.partner.id_category"
+msgstr "res.partner.id_category"

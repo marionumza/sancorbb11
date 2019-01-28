@@ -1,0 +1,15 @@
+<odoo>
+    <record model="ir.ui.view" id="prodcut_template_view">
+        <field name="name">prodcut.template.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="responsible_id" position="after">
+                <field name="width"/>
+                <field name="height"/>
+                <field name="length"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

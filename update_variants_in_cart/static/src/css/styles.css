@@ -1,0 +1,108 @@
+.variants_form a {
+    cursor: pointer;
+}
+
+.variants_info > dt,
+.variants_info > dd {
+    float: left;
+}
+
+.variants_info > dd {
+    margin-left: 5px !important;
+    margin-right: 10px;
+}
+
+.variants_info > dd:after {
+    content: ",";
+}
+
+.variants_info > dd:last-child:after {
+    content: "";
+}
+
+.cart-actions {
+    clear: both;
+}
+
+.cart-actions .oe_separator {
+    opacity: 0.2;
+    padding: 0 5px 0 5px;
+}
+
+.update_variant_form {
+    margin: 0 15%;
+    width: auto;
+}
+
+.update_variant_form .uvc_thumbnail {
+    vertical-align: top;
+    padding-right: 5%;
+}
+
+table.variants > tbody > tr > td > label {
+    min-width: 76px;
+}
+
+table.variants > tbody > tr > td {
+    vertical-align: unset;
+}
+
+table.variants > tbody > tr > td > select{
+    padding: 5px;
+}
+
+.single_variant_wrap .msg {
+    display: none;
+}
+
+.update_variant_form .reset_attributes {
+    display: block;
+    margin-left: 1em;
+    clear: both;
+    margin-top: -10px;
+}
+
+.variants_button, .single_variant{
+    margin-top: 5px;
+}
+
+.variants_button div.quantity {
+    margin-right: 10px;
+}
+
+.variants_button div.quantity > input {
+    width: 75px;
+}
+
+span#cancel {
+    color: red;
+}
+
+@media only screen and (max-width: 500px) {
+    .cart-actions .oe_separator {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .oe_cart table tr#new_item td {
+        display: inline-block;
+        width: 100% !important;
+        height: auto;
+        border-top-style: none !important;
+        border-top-width: 0 !important;
+    }
+
+    .update_variant_form .reset_attributes {
+        margin-left: 0 !important;
+        text-align: center;
+    }
+
+    .variants_button > div.uvc_update_and_cancel_button {
+        text-align: center;
+    }
+
+    .variants_button div.quantity, .variants_button div.quantity > input {
+        width: 100% !important;
+    }
+}

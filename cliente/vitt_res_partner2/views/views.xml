@@ -1,0 +1,262 @@
+<odoo>
+    <record id="res_partner_view_inherited2" model="ir.ui.view">
+        <field name="name">res.partner.view.inherited2</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group[1]/group[1]/div" position="replace">
+                <div class="oe_edit_only">
+                    <button name="open_parent" type="object" string="(edit)" class="oe_link" attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}"/>
+                </div>
+                <!--field name="street" placeholder="Street..." attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="street2" placeholder="Street 2..." attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/-->
+                <field name="city" placeholder="City" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="state_id" placeholder="State" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'zip': zip}"/>
+                <field name="zip" placeholder="ZIP" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="country_id" placeholder="Country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            </xpath>
+            <!--field name="street2" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </field>
+            <field name="street" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </field-->
+            <xpath expr="//form/sheet/group[1]/group[1]/label" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group[1]" position="before">
+                <group>
+                <!--group attrs="{'invisible':[('company_type', '!=', 'person')]}"-->
+                    <group>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <label for="street"/>
+                        <div>
+                            <field name="street" style="width: 60%" />
+                            <label for="street_number" string="Nro"/>
+                            <field name="street_number" style="width: 30%"/>
+                        </div>
+                        <field name="street2" string=""/>
+                        <field name="street3"/>
+                        <field name="neighborhood"/>
+                        <field name="floor"/>
+                        <field name="apartment"/>
+                        <field name="localidad"/>
+                        <field name="partido"/>
+                        <field name="who_receive" attrs="{'invisible': [('parent_id', '!=', False)]}"/>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+            </xpath>
+            <field name="vat" position="after">
+                <field name="main_id_category_id"/>
+                <field name="main_id_number"/>
+                <field name="afip_responsability_type_id"/>
+            </field>
+
+
+            <!--xpath expr="//form/sheet/group[1]" position="before">
+                <group attrs="{'invisible':[('company_type', '!=', 'person')]}">
+                    <group>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <label for="street"/>
+                        <div>
+                            <field name="street" style="width: 60%" />
+                            <label for="street_number" string="Nro"/>
+                            <field name="street_number" style="width: 30%"/>
+                        </div>
+                        <field name="other_info"/>
+                        <field name="neighborhood"/>
+                        <field name="floor"/>
+                        <field name="apartment"/>
+
+                        <field name="main_id_category_id"/>
+                        <field name="main_id_number"/>
+                        <field name="afip_responsability_type_id"/>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+            </xpath-->
+
+        </field>
+    </record>
+
+    <record id="sale_order_view_inherited" model="ir.ui.view">
+        <field name="name">sale.order.view.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_invoice_id" position="before">
+                <field name="street3"/>
+                <field name="who_receive"/>
+                <!--field name="neighborhood"/>
+                <field name="floor"/>
+                <field name="apartment"/>
+                <field name="localidad"/>
+                <field name="partido"/-->
+
+                <!--field name="zip"/>
+                <field name="city"/>
+                <field name="state_id"/>
+                <field name="country_id"/-->
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_picking_view_inherited" model="ir.ui.view">
+        <field name="name">stock.picking.view.inherited</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="who_receive"/>
+            </field>
+        </field>
+    </record>
+
+    <template id="report_delivery_document_sbb" inherit_id="stock.report_delivery_document">
+        <xpath expr="//th[@name='td_sched_date_h']" position="after">
+            <th t-if="o.who_receive"><strong>Quien Recibe</strong></th>
+        </xpath>
+        <xpath expr="//td[@name='td_sched_date']" position="after">
+            <td t-if="o.who_receive">
+                <span t-field="o.who_receive"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="report_shippings_sbb" inherit_id="stock.report_picking">
+        <xpath expr="//th[@name='td_sched_date_h']" position="after">
+            <th t-if="o.who_receive"><strong>Quien Recibe</strong></th>
+        </xpath>
+        <xpath expr="//td[@name='td_sched_date']" position="after">
+            <td t-if="o.who_receive">
+                <span t-field="o.who_receive"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="report_saleorder_document_sbb" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='payment_term']" position="after">
+            <div t-if="doc.who_receive" class="col-xs-3">
+                <strong>Quien Recibe:</strong>
+                <p t-field="doc.who_receive"/>
+            </div>
+        </xpath>
+    </template>
+    <template id="report_picking_sbb" inherit_id="stock.report_picking">
+        <xpath expr="//div[@name='partner_header']" position="replace">
+            <div t-if="o.partner_id" name="partner_header">
+                <p><span t-field="o.partner_id.name"/><br/>
+                    <span t-field="o.partner_id.phone"/><br/>
+
+                    <span t-field="o.partner_id.neighborhood"/><br/>
+                    <span t-field="o.partner_id.floor"/><br/>
+                    <span t-field="o.partner_id.apartment"/><br/>
+                    <span t-field="o.partner_id.localidad"/><br/>
+                    <span t-field="o.partner_id.partido"/><br/>
+
+                    <span t-field="o.partner_id.street"/> <span t-field="o.partner_id.street_number"/><br/>
+                    <span t-field="o.partner_id.city"/><br/>
+                    <span t-field="o.partner_id.state_id.name"/><br/>
+                    <span t-field="o.partner_id.zip"/><br/></p>
+            </div>
+        </xpath>
+        <xpath expr="//div/table[2]/thead" position="replace">
+              <thead>
+                <tr>
+                    <th width="40%">Product</th>
+                    <th width="10%">Quantity</th>
+                    <th width="10%" class="text-center">
+                        <t t-if="has_barcode">Barcode</t>
+                    </th>
+                    <th width="10%" class="text-center">
+                        <t t-if="has_barcode">code</t>
+                    </th>
+                    <!--th width="10%">
+                        <t t-if="o.picking_type_id.code != 'incoming'" align="left">Source</t>
+                    </th>
+                    <th width="10%">
+                        <t t-if="has_serial_number">Lot/Serial Number</t>
+                    </th>
+                    <th width="10%" class="text-right">Destination</th-->
+                </tr>
+              </thead>
+        </xpath>
+        <xpath expr="//div/table[2]/tbody" position="replace">
+              <tbody>
+                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                        <td>
+                            <span t-field="move.product_id.display_name"/><br/>
+                            <span t-field="move.product_id.description_picking"/>
+                        </td>
+                        <td>
+                            <span t-if="move.product_qty" t-field="move.product_qty"/>
+                            <span t-if="not move.product_qty" t-esc="move.product_uom._compute_quantity(move.quantity_done, move.product_id.uom_id, rounding_method='HALF-UP')"/>
+                            <span t-field="move.product_id.uom_id" groups="product.group_uom"/>
+                        </td>
+                        <td>
+                            <t t-if="has_barcode">
+                                <span t-if="move.product_id and move.product_id.barcode">
+                                    <img t-if="move.product_id.barcode and len(move.product_id.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', move.product_id.barcode, 600, 100)" style="width:100%;height:50px"/>
+                                    <img t-elif="move.product_id.barcode and len(move.product_id.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', move.product_id.barcode, 600, 100)" style="width:100%;height:50px"/>
+                                    <img t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', move.product_id.barcode, 600, 100)" style="width:100%;height:50px"/>
+                                </span>
+                            </t>
+                        </td>
+                        <td>
+                            <t t-if="has_barcode">
+                                <span t-if="move.product_id and move.product_id.barcode">
+                                    <span t-field="move.product_id.barcode"/>
+                                </span>
+                            </t>
+                        </td>
+                        <!--td colspan="3">
+                            <t t-if="move.move_line_ids">
+                                <table width="100%">
+                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
+                                        <td width="20%">
+                                            <t t-if="o.picking_type_id.code != 'incoming'">
+                                                <span t-esc="ml.location_id.display_name"/>
+                                                <t t-if="ml.package_id">
+                                                    - <span t-field="ml.package_id"/>
+                                                </t>
+                                            </t>
+                                        </td>
+                                        <td width="50%">
+                                            <t t-if="has_serial_number and ml.product_id.tracking != 'none'">
+                                                <div class="col-xs-4">
+                                                    <span t-field="ml.lot_id"/>
+                                                    <span t-if="not ml.lot_id" t-field="ml.lot_name"/>
+                                                </div>
+                                            </t>
+                                            <div class="col-xs-8">
+                                                <span t-field="ml.qty_done"/>
+                                                <t t-if="o.state!='done'">
+                                                    / <span t-field="ml.product_uom_qty"/>
+                                                </t>
+                                            </div>
+                                        </td>
+                                        <td width="30%" align="right">
+                                            <div>
+                                                <span t-field="ml.location_dest_id"/>
+                                                <t t-if="ml.result_package_id">
+                                                    - <span t-field="ml.result_package_id"/>
+                                                </t>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                            <t t-else="">
+                                <span>No reservation or quantity done yet.</span>
+                            </t>
+                        </td-->
+                    </tr>
+              </tbody>
+        </xpath>
+    </template>
+</odoo>

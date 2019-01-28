@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_odoo_website_product_label_tree_view" model="ir.ui.view">
+            <field name="name">odoo.website.product.label.tree.view</field>
+            <field name="model">website.product.label</field>
+            <field name="arch" type="xml">
+               <tree string="Website Product Label">													
+					 <field name="name"/>
+					 <field name="position"/>
+			    	 <field name="height"/>
+			    	 <field name="width"/>
+			    	 <field name="margin_top"/>
+			    	 <field name="margin_bottom"/>
+			    	 <field name="margin_left"/>
+			    	 <field name="margin_right"/>
+			    	 	
+				</tree>
+		    </field>
+        </record>
+
+
+
+   <record id="view_odoo_website_product_label_form_view" model="ir.ui.view">
+            <field name="name">odoo.website.product.label.form.view</field>
+            <field name="model">website.product.label</field>
+            <field name="arch" type="xml">
+				<form string="Website Product Label" version="9.0">
+						<sheet>
+							<field name="image" widget="image" class="oe_left oe_avatar"/>
+							<div class="oe_title">
+								<h1><field name="name" style="width: 35% !important;"/></h1>
+						   	</div>
+						   	
+						 <group> 
+						   	<group string="Set Dimension">
+								 <field name="height"/>
+								 <field name="width"/>
+								 <field name="position"/>
+							</group>
+							
+							<group string="Customize Position">
+								 <field name="margin_top"/>
+								 <field name="margin_bottom"/>
+								 <field name="margin_left"/>
+								 <field name="margin_right"/>
+							</group>
+							
+					 	</group>
+					 	
+						</sheet>
+				</form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="odoo_website_product_label_kanban_view_bi">
+            <field name="name">odoo.website.product.label.kanban.bi</field>
+            <field name="model">website.product.label</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban" >
+                    <field name="id"/>
+                    <field name="image" widget="image" class="oe_left oe_avatar"/>
+                    <field name="name"/>
+                    <field name="position"/>
+                    <field name="height"/>
+					<field name="width"/>
+					
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('website.product.label', 'image', record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <ul>
+                                        <li>Position: <field name="position"></field></li>
+                                        <li>Height: <field name="height"></field></li>
+                                        <li>Width: <field name="width"></field></li>
+                                    </ul>
+                                    <div name="tags"/>
+                                </div>
+                            </div>
+                        </t>
+                   </templates>
+                    
+                </kanban>
+            </field>
+        </record>
+        
+        
+
+        
+     	<record id="action_odoo_website_product_label_menu" model="ir.actions.act_window">
+            <field name="name">Odoo Website Product Label</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">website.product.label</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+		
+		<menuitem id= "odoo_website_product_label_menu" parent= "sale.product_menu_catalog" name= "Website Product Label" action="action_odoo_website_product_label_menu" sequence="30" />
+		
+		
+		  <record model="ir.ui.view" id="odoo_product_template_inherit_bi_form_view">
+		        <field name="name">odoo.website.product.label.bi.form.view</field>
+		        <field name="model">product.template</field>
+		        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+		        <field name="arch" type="xml">
+				    
+				    <xpath expr="//group[@name='website']" position="after"> 
+						 <group string="Website Product Label">   
+		                       <field name="select_label"/>  
+		                       <field name="label_image" widget="image" class="oe_left oe_avatar"/> 
+		                  </group>
+					</xpath>
+		        
+		        </field>
+          </record>
+        
+        
+		
+    </data>
+</openerp>

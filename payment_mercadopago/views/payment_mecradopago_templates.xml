@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <template id="mercadopago_asset_frontend" inherit_id="website.assets_frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/payment_mercadopago/static/src/js/payment_page.js"></script>
+            </xpath>
+        </template>
+
+        <template id="payment_confirmation_modification" inherit_id="website_sale.confirmation">
+            <xpath expr="//t[@t-call='website_sale.payment_confirmation_status']" position="after">
+                <t t-if="msg">
+                    <p>Your transaction has been registered to<t t-esc="order.payment_acquirer_id.name"/>, but it is
+                        still pending.<br/>To complete it below you can find receipt and further instructions to
+                        complete payment.
+                    </p>
+                    <div class="panel panel-info" style="text-align:center;">
+                        <!--<div class="panel-heading">-->
+                        <a t-att-href="msg" target="_blank">Click Here To Print Receipt</a>
+                        <!--</div>-->
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+        <template id='payment_inherit' inherit_id='payment.payment_tokens_list'>
+            <xpath expr='//t[@t-foreach="s2s_acquirers"]/div[2]' position="replace">
+                <t t-if="acq.provider!='mercadopago'">
+                    <div t-attf-id="o_payment_add_token_acq_{{acq.id}}" t-attf-class="panel-footer {{'hidden' if (len(s2s_acquirers)&gt;1 and len(pms)==0 and s2s_acquirers[0]!=acq) else 'hidden' if len(pms)&gt;0 else ''}}">
+                        <div class="clearfix">
+                            <t t-call="{{acq.sudo().get_s2s_form_xml_id()}}">
+                                <t t-set="id" t-value="acq.id"/>
+                                <t t-set="partner_id" t-value="partner_id"/>
+                                <t t-set="return_url" t-value="''"/>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div t-attf-id="o_payment_add_token_acq_{{acq.id}}" t-attf-class="panel-footer {{'hidden' if (len(s2s_acquirers)&gt;1 and len(pms)==0 and s2s_acquirers[0]!=acq) else 'hidden' if len(pms)&gt;0 else ''}}">
+                        <select class="form-control" name="payment_method">
+                            <option value="credit_debit">Credit/Debit Card</option>
+                            <t t-foreach="acq.other_payment_methods_ids" t-as="o">
+                                <t t-if="o.payment_type == 'atm'">
+                                    <option value="cash">ATM</option>
+                                </t>
+                            </t>
+                            <!--<option value="cash">ATM</option>-->
+                            <option value="bank_transfer">Bank Transfer</option>
+                        </select>
+                        <hr style="margin-top: 15px;margin-bottom: 15px;padding: 0 !important;border-top: 1px solid #bfbcbc;"></hr>
+                        <select class="mt8 form-control hidden" id="payment_type_bank" name="payment_type_bank">
+                            <t t-foreach="acq.other_payment_methods_ids" t-as="o">
+                                <t t-if="o.payment_type == 'ticket'">
+                                    <option t-att-value="o.uni_id">
+                                        <t t-esc="o.name"/>
+                                    </option>
+                                </t>
+                            </t>
+                        </select>
+                        <div id="mp_form" class="clearfix">
+                            <!--<t t-if="payment_method_type=='credit_debit'">-->
+                            <t t-call="{{acq.sudo().get_s2s_form_xml_id()}}">
+                                <t t-set="id" t-value="acq.id"/>
+                                <t t-set="partner_id" t-value="partner_id"/>
+                                <t t-set="return_url" t-value="''"/>
+                            </t>
+                            <!--</t>-->
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+            <xpath expr='//t[@t-foreach="pms"]/div/label' position='after'>
+                <script type="text/javascript">
+                    $(document).ready(function() { if ($('.installments_value1') != null){ $(document).on('change',
+                    '.installments_value1', function (event) { event.preventDefault();
+                    $(this).parent().find('.installments1').val($(this).val()); $('#installments').val($(this).val());
+                    }); }; $(document).on('change', '.cccc', function (event) { $('#cc_cvc').val($(this).val()); });
+                    $(document).on('click', '[name="pm_id"]', function () {
+                    $(document).find('div.panel-body').each(function() { $(this).removeClass('active');
+                    $(this).find('.cc_cvc').val(''); }); $(this).parent().parent().addClass('active'); }); });
+                </script>
+
+                <style type="text/css">
+                    div.panel-body.active .custom_our{ display: block !important; }
+                </style>
+
+                <div class="custom_our" style="display:none;" t-if="pm.acquirer_id.provider=='mercadopago'">
+                    <div class="form-group col-md-3">
+                        <input type="text" t-att-name="'cc_cvc_'+str(pm.id)" class="form-control cccc" t-if="pm.acquirer_id.provider=='mercadopago'" data-is-required="true" placeholder="CVC"></input>
+                        <!--<input type="text" name="cc_cvc" class="form-control cc_cvc" data-is-required="true" placeholder="CVC" style="margin-top:0px;margin-left:21px;width:10%;"></input>-->
+                    </div>
+                    <t t-if="pm.acquirer_id.include_installments == True">
+                        <div class="form-group col-md-9">
+                            <label for="installments_value1" class="col-md-3" style="padding-top:5px;">
+                                <b>Installments :</b>
+                            </label>
+                            <input type="hidden" id="installments1" class="installments1" t-att-name="'installments1'+str(pm.id)" value="1"/>
+                            <input type="hidden" id="token" class="tttt" t-att-value="pm.mercadopago_profile"/>
+                            <!--<input type="hidde" id="token_1" class="ttttnn" value=""/>-->
+                            <select id="installments_value1" t-att-name="'installments_value1'+str(pm.id)" class="installments_value1 mercadopago_installments form-control col-md-9" style="width: inherit;" data-tax="">
+                                <option value="1">Single Payment</option>
+                                <option value="3">3 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="12">12 Months</option>
+                                <option value="24">24 Months</option>
+                            </select>
+                        </div>
+                        <div t-att-class="'form-group col-md-4' if bootstrap_formatting else 'form-group'" style="float:right">
+                            <p id="summary">
+                                Total al contado: <span id="total">$<t t-esc="order.amount_total" data-oe-type="monetary"/></span><br/>
+                                Total financiado: <span id="total-financed">$0</span><br/>
+                                TEA: <span id="tea">0%</span>
+                                CFT: <span id="cft">0%</span>
+                            </p>
+                        </div>
+                    </t>
+
+                    <div class="form-group col-md-9">
+                        <p>To know more about Financial Costs related to Installments, click <a t-att-href="pm.acquirer_id.financing_costs_url" target="_blank">Here</a></p>
+                    </div>
+                </div>
+
+
+            </xpath>
+        </template>
+
+
+        <template id="mercadopago_form">
+            <div>
+                <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
+                <script src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js" data-public-key="TEST-5757d909-809a-439c-b6ca-ef6d90c77a50" data-transaction-amount="100.00"></script>
+
+                <!--<input type='hidden' name='x_login' t-att-value='x_login'/>-->
+                <!--<input type='hidden' name='x_amount' t-att-value='x_amount'/>-->
+                <!--<input type='hidden' name='billing_partner_country_id' t-att-value='billing_partner_country_id'/>-->
+                <!--<input type='hidden' name='currency_id' t-att-value='currency_id'/>-->
+                <!--<input type='hidden' name='billing_partner_country' t-att-value='billing_partner_country'/>-->
+                <input type='hidden' name='tx_return_url' t-att-value='tx_return_url'/>
+                <!--<input type='hidden' name='currency' t-att-value='currency'/>-->
+                <!--<input type='hidden' name='partner_phone' t-att-value='partner_phone'/>-->
+                <!--<input type='hidden' name='partner_name' t-att-value='partner_name'/>-->
+                <!--<input type='hidden' name='partner_country_id' t-att-value='partner_country_id'/>-->
+                <!--<input type='hidden' name='partner_zip' t-att-value='partner_zip'/>-->
+                <!--<input type='hidden' name='billing_partner_city' t-att-value='billing_partner_city'/>-->
+                <!--<input type='hidden' name='billing_partner_state' t-att-value='billing_partner_state'/>-->
+                <!--<input type='hidden' name='partner_first_name' t-att-value='partner_first_name'/>-->
+                <!--<input type='hidden' name='partner' t-att-value='partner'/>-->
+                <!--<input type='hidden' name='billing_partner_lang' t-att-value='billing_partner_lang'/>-->
+                <!--<input type='hidden' name='partner_address' t-att-value='partner_address'/>-->
+                <!--<input type='hidden' name='billing_partner_name' t-att-value='billing_partner_name'/>-->
+                <!--<input type='hidden' name='billing_partner' t-att-value='billing_partner'/>-->
+                <!--<input type='hidden' name='reference' t-att-value='reference'/>-->
+                <!--<input type='hidden' name='partner_email' t-att-value='partner_email'/>-->
+                <!--<input type='hidden' name='billing_partner_address' t-att-value='billing_partner_address'/>-->
+                <!--<input type='hidden' name='billing_partner_last_name' t-att-value='billing_partner_last_name'/>-->
+                <!--<input type='hidden' name='billing_partner_email' t-att-value='billing_partner_email'/>-->
+                <!--<input type='hidden' name='partner_id' t-att-value='partner_id'/>-->
+                <!--<input type='hidden' name='billing_partner_id' t-att-value='billing_partner_id'/>-->
+                <!--<input type='hidden' name='billing_partner_first_name' t-att-value='billing_partner_first_name'/>-->
+                <!--<input type='hidden' name='partner_last_name' t-att-value='partner_last_name'/>-->
+                <!--<input type='hidden' name='partner_city' t-att-value='partner_city'/>-->
+                <!--<input type='hidden' name='billing_partner_phone' t-att-value='billing_partner_phone'/>-->
+                <!--<input type='hidden' name='partner_lang' t-att-value='partner_lang'/>-->
+                <!--<input type='hidden' name='billing_partner_zip' t-att-value='billing_partner_zip'/>-->
+                <!--<input type='hidden' name='partner_country' t-att-value='partner_country'/>-->
+                <!--<input type='hidden' name='partner_state' t-att-value='partner_state'/>-->
+                <!--<input type='hidden' name='back_urls' t-att-value="{-->
+                <!--'pending': 'http://localhost:8888/shop/',-->
+                <!--'success': 'http://localhost:8888/',-->
+                <!--'failure': 'http://localhost:8888/shop/'}"/>-->
+
+            </div>
+        </template>
+
+        <template id="mercado_s2s_form">
+            <input type="hidden" name="data_set" data-create-route="/payment/mercadopago/s2s/create_json_3ds"/>
+            <input type="hidden" id="order_total" name="order_total" t-att-value="website_sale_order.amount_total"/>
+            <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+            <script type="text/javascript" src="/payment_mercadopago/static/src/js/mercadopago.js"></script>
+            <div class="mt8">
+                <div t-att-class="'form-group col-md-12' if bootstrap_formatting else 'form-group'">
+                    <input type="email" name="customer_email" class="mercadopago_customer_email form-control" id="customer_email" placeholder="example@domain.com" data-is-required="true" autocomplete="off" t-att-value='partner_email'/>
+                </div>
+                <div t-att-class="'form-group col-md-12' if bootstrap_formatting else 'form-group'">
+                    <input type="tel" name="cc_number" id="cc_number" class="mercadopago_cc_number form-control" placeholder="Card number" data-is-required="true" autocomplete="off"/>
+                    <div class="card_placeholder"></div>
+                    <div class="visa"></div>
+                    <input type="hidden" name="cc_brand" class="mercadopago_cc_brand" value=""/>
+                </div>
+                <div t-att-class="'form-group col-md-5' if bootstrap_formatting else 'form-group'">
+                    <input type="text" name="cc_holder_name" id="cc_holder_name" class="mercadopago_cc_holder_name form-control" placeholder="Cardholder name" data-is-required="true" autocomplete="off"/>
+                </div>
+                <div t-att-class="'form-group col-md-3' if bootstrap_formatting else 'form-group'">
+                    <input type="text" name="cc_expiry" id="cc_expiry" class="mercadopago_cc_expiry form-control" maxlength="7" placeholder="Expires (MM / YY)" data-is-required="true" autocomplete="off"/>
+                </div>
+                <div t-att-class="'form-group col-md-4' if bootstrap_formatting else 'form-group'">
+                    <input type="text" name="cc_cvc" id="cc_cvc" class="mercadopago_cc_cvc form-control" maxlength="4" placeholder="CVC" data-is-required="true" autocomplete="off"/>
+                </div>
+                <div t-att-class="'form-group col-md-4' if bootstrap_formatting else 'form-group'">
+                    <!--<label for="docType">Document type:</label>-->
+                    <select id="docTypeValue" name="docTypeValue" class="mercadopago_docType form-control">
+                        <option value="DNI">DNI</option>
+                        <option value="CI">Cédula</option>
+                        <option value="LC">L.C.</option>
+                        <option value="LE">L.E.</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <input type="hidden" id="docType" name="docType"/>
+                <div t-att-class="'form-group col-md-8' if bootstrap_formatting else 'form-group'">
+                    <input name="docNumber" type="text" id="docNumber" class="mercadopago_docNumber form-control" data-is-required="true" placeholder="Document Number"/>
+                </div>
+                <!--<div class="col-md-12">-->
+                <!--<div t-att-class="'form-group ' if bootstrap_formatting else 'form-group'">-->
+                <!--<label for="installments" class="col-md-4">Installments : </label>-->
+                <!--<select id="installments" name="installments" class="mercadopago_installments form-control co-md-5">-->
+                <!--<option value="1">Single Payment</option>-->
+                <!--<option value="3">3 Months</option>-->
+                <!--<option value="6">6 Months</option>-->
+                <!--<option value="12">12 Months</option>-->
+                <!--<option value="24">24 Months</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<t t-if="acq.include_installments == True">
+                    <div t-att-class="'form-group' if bootstrap_formatting else 'form-group'">
+                        <label for="installments_value" class="col-md-2" style="padding-top:5px"><b>Installments : </b></label>
+                        <input type="hidden" id="installments" name="installments"/>
+                        <select id="installments_value" name="installments_value" class="mercadopago_installments form-control col-md-10"  style="    width: auto;">
+                            <option value="1">Single Payment</option>
+                            <option value="3">3 Months</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">12 Months</option>
+                            <option value="24">24 Months</option>
+                        </select>
+                    </div>
+                </t>-->
+                <t t-if="acq.include_installments == True">
+                    <div t-att-class="'form-group' if bootstrap_formatting else 'form-group'">
+                        <label for="installments_value" class="col-md-2" style="padding-top:5px">
+                            <b>Installments : </b>
+                        </label>
+                        <input type="hidden" id="installments" name="installments"/>
+                        <select id="installments_value" name="installments_value" class="mercadopago_installments form-control col-md-10" data-tax="" style="    width: auto;"></select>
+                    </div>
+                    <div t-att-class="'form-group col-md-4' if bootstrap_formatting else 'form-group'" style="float:right">
+                        <p id="summary">
+                            Total al contado: <span id="total"><t t-esc="order.amount_total"/></span><br/>
+                            Total financiado: <span id="total-financed">$0</span><br/>
+                            TEA: <span id="tea">0%</span>
+                            CFT: <span id="cft">0%</span>
+                        </p>
+                    </div>
+                </t>
+            </div>
+            <input type="hidden" name="acquirer_id" t-att-value="id"/>
+            <input class="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input t-if="return_url" type="hidden" name="return_url" t-att-value="return_url"/>
+            <input t-if="partner_id" type="hidden" name="partner_id" t-att-value="partner_id"/>
+            <div class="form-group col-md-9 document.getElementById('docTypeValue').onchange = function(event) { event.preventDefault(); var doctype mt32">
+                        <p>To know more about Financial Costs related to Installments, click <a t-att-href="acq.financing_costs_url" target="_blank">Here</a></p>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#docType').val("DNI");
+                    $('#installments').val("1");
+                    document.getElementById("docTypeValue").onchange = function(event) {
+                        event.preventDefault();
+                        var doctype = $("#docTypeValue").val();
+                        $('#docType').val(doctype);
+                    };
+                    if (document.getElementById("installments_value") != null){
+                    document.getElementById("installments_value").onchange = function(event) {
+                        event.preventDefault();
+                        var installments = $("#installments_value").val();
+                        $('#installments').val(installments);
+                    };
+                };
+                });
+            </script>
+            <!--<script type="text/javascript">-->
+                <!--$(document).ready(function() { $('#docType').val("DNI"); $('#installments').val("1");-->
+                <!--= $("#docTypeValue").val(); $('#docType').val(doctype); }; if-->
+                <!--(document.getElementById("installments_value") != null){-->
+                <!--document.getElementById("installments_value").onchange = function(event) { event.preventDefault(); var-->
+                <!--installments = $("#installments_value").val(); $('#installments').val(installments); }; }; });-->
+            <!--</script>-->
+        </template>
+
+        <template id="reject_payment_template" name="Payment Reject">
+            <t t-call="website.layout">
+                <div class="container-fluid">
+                    <div class="container mt8">
+                        <div class="row text-center" align="center">
+                            <h1 class="page-header">Payment has been rejected</h1>
+                            <form action="/shop/cart">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <t t-if="msg">
+                                        <span>Your payment has been rejected by MercadoPago due to :</span>
+                                        <strong>
+                                            <span t-esc="msg"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>
+                                            <span>There seems to be some problem processing your transaction. It might
+                                                be due to details provided are incorrect or some technical issues.
+                                                Please try again in some time.
+                                            </span>
+                                        </strong>
+                                    </t>
+
+                                </div>
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="text-center mt16 mb16">
+                                        <button type="submit" class="btn btn-primary">Try Again</button>
+                                    </div>
+                                    <span>If problem still persist please contact for technical support.</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="transaction_form_mercadopago_inherit" model="ir.ui.view">
+        <field name="name">Transaction Form MercadoPago Inherit</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.transaction_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="inside">
+                <notebook attrs="{'invisible': [('provider', '!=', 'mercadopago')]}">
+                    <page name="mercadopago_response" string="MercadoPago Response" >
+                        <field name="mercadopago_response" readonly="1"/>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="acquirer_form_mercadopago" model="ir.ui.view">
+        <field name="name">acquirer.form.mercadopago</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="acquirer"]' position='after'>
+                <group attrs="{'invisible': [('provider', '!=', 'mercadopago')]}">
+                    <group>
+                        <field name="mercadopago_client_id" string="MercadoPago Client Id"/>
+                        <field name="mercadopago_client_secret" string="MercadoPago Client Secret" password="True"/>
+                        <field name="mercadopago_ipn_url" string="MercadoPago IPN URL" widget="url" readonly="True"/>
+                        <field name="financing_costs_url" string="Financing Costs URL" widget="url"/>
+                    </group>
+                    <group>
+                        <field name="mercadopago_test_public_key" attrs="{'invisible':[('environment','!=','test')], 'required':[('environment','=','test'),('provider', '=', 'mercadopago')]}"/>
+                        <field name="mercadopago_test_access_token" attrs="{'invisible':[('environment','!=','test')], 'required':[('environment','=','test'),('provider', '=', 'mercadopago')]}"/>
+                        <field name="mercadopago_prod_public_key" attrs="{'invisible':[('environment','!=','prod')], 'required':[('environment','=','prod'),('provider', '=', 'mercadopago')]}"/>
+
+                    </group>
+                    <group>
+                        <field name="mercadopago_use_ipn"/>
+                        <field name="mercadopago_enable_MercadoEnvio"/>
+                        <field name="include_installments"/>
+                    </group>
+                    <a colspan="2" href="https://www.mercadopago.com/" target="_blank">
+                        How to get paid with MercadoPago
+                    </a>
+                </group>
+            </xpath>
+            <xpath expr="//group[@name='acquirer_config']" position="inside">
+                <field name="auto_confirm" attrs="{'invisible': [('provider', '!=', 'mercadopago')]}"/>
+                <field name="available_payment_method" attrs="{'invisible': [('provider', '!=', 'mercadopago')]}"/>
+                <!--<group>-->
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="credit_card_payment_methods_ids" string="Credit Cards" style="font-weight:bold"/>
+                        <field name="credit_card_payment_methods_ids" widget="many2many_checkboxes" attrs="{'invisible': [('provider', '!=', 'mercadopago')], 'readonly': [('available_payment_method', '=', 'all')]}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="debit_card_payment_methods_ids" string="Debit Cards" style="font-weight:bold"/>
+                        <field name="debit_card_payment_methods_ids" widget="many2many_checkboxes" attrs="{'invisible': [('provider', '!=', 'mercadopago')], 'readonly': [('available_payment_method', '=', 'all')]}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="other_payment_methods_ids" string="Cash/Bank Transfer" style="font-weight:bold"/>
+                        <field name="other_payment_methods_ids" widget="many2many_checkboxes" attrs="{'invisible': [('provider', '!=', 'mercadopago')], 'readonly': [('available_payment_method', '=', 'all')]}"/>
+                    </div>
+                </div>
+                <!--</group>-->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="token_form_mercadopago" model="ir.ui.view">
+        <field name='name'>payment.token.form</field>
+        <field name='model'>payment.token</field>
+        <field name="inherit_id" ref="payment.payment_token_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="acquirer_ref"]' position='after'>
+                <field name="mercadopago_profile" attrs="{'invisible':['|', ('provider', '!=', 'mercadopago'), ('save_token', '=', 'none')]}"/>
+                <field name="provider" invisible='1'/>
+                <field name="save_token" invisible='1'/>
+                <field name="mercadopago_installments" invisible='1'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,90 @@
+<odoo>
+    <record model="ir.ui.view" id="sale_order_view">
+        <field name="name">sale.order.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="validity_date" position="after">
+                <field name="payment_tx_state"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_view">
+        <field name="name">sale.order.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="payment_tx_state"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_view2">
+        <field name="name">sale.order.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="payment_tx_state"/>
+            </field>
+        </field>
+    </record>
+
+
+    <!--template id="vitt_website_sale" inherit_id="website_sale.address">
+        <xpath expr="//form[@name='/shop/checkout']/div[1]" position="after">
+            <input type="hidden" name="field_required" t-att-value="'zip'" />
+        </xpath>
+    </template>
+
+    <function model="ir.model.fields" name="formbuilder_whitelist">
+        <value>res.partner</value>
+        <value eval="[
+            'main_id_category_id',
+            'main_id_number',
+            'afip_responsability_type_id',
+                'name', 'phone', 'email',
+                'city', 'zip', 'street', 'street2', 'state_id', 'country_id',
+                'vat', 'company_name',
+        ]"/>
+    </function>
+
+    <record id="res_partner_view_inherited2" model="ir.ui.view">
+        <field name="name">res.partner.view.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="main_id_category_id"/>
+                <field name="main_id_number"/>
+                <field name="afip_responsability_type_id"/>
+            </field>
+        </field>
+    </record>
+
+
+    <template id="vitt_website_sale2" inherit_id="website_sale.address">
+        <xpath expr="//form[@name='/shop/checkout']/div[1]" position="after">
+
+            <div t-attf-class="form-group #{error.get('main_id_category_id') and 'has-error' or ''} col-md-12">
+                <label class="control-label" for="main_id_category_id">ID Document Type</label>
+                <select id="main_id_category_id" name="main_id_category_id" class="form-control">
+                    <option value="">ID Document Type...</option>
+                    <t t-foreach="main_id_category_ids" t-as="rid">
+                        <option t-att-value="rid.id" t-att-selected="rid.id == (main_id_category_id and main_id_category_id.id or -1)">
+                            <t t-esc="rid.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div t-attf-class="form-group #{error.get('main_id_number') and 'has-error' or ''} col-md-12 div_street">
+                <label class="control-label" for="main_id_number">Main ID Number</label>
+                <input type="text" name="main_id_number" class="form-control" t-att-value="'main_id_number' in checkout and checkout['main_id_number']" />
+            </div>
+
+        </xpath>
+    </template-->
+
+</odoo>

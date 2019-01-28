@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+odoo_website_terms_conditions_visitor_user,odoo_website_terms_conditions_visitor_user_name,odoo_website_terms_conditions.model_website_terms_conditions,,1,1,0,0

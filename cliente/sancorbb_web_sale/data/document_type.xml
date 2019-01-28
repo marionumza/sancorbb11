@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--data noupdate="False">
+        <record model='res.partner.id_category' id='dt_CUIT'>
+            <field name='code'>CUIT</field>
+            <field name='name'>CUIT</field>
+            <field name='afip_code'>80</field>
+        </record> 
+        <record model='res.partner.id_category' id='dt_CUIL'>
+            <field name='code'>CUIL</field>
+            <field name='name'>CUIL</field>
+            <field name='afip_code'>86</field>
+        </record> 
+        <record model='res.partner.id_category' id='dt_PAS'>
+            <field name='code'>PAS</field>
+            <field name='name'>Pasaporte</field>
+            <field name='afip_code'>94</field>
+        </record> 
+        <record model='res.partner.id_category' id='dt_DNI'>
+            <field name='code'>DNI</field>
+            <field name='name'>DNI</field>
+            <field name='afip_code'>96</field>
+        </record> 
+    </data>
+
+    <data noupdate="True">
+        <record model='afip.responsability.type' id='res_IVARI'>
+            <field name='code'>1</field>
+            <field name='name'>IVA Responsable Inscripto</field>
+            <field name='report_code_name'>RI</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_IVARIFM'>
+            <field name='code'>1FM</field>
+            <field name='name'>IVA Responsable Inscripto Factura M</field>
+            <field name='report_code_name'>RIM</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_IVARNI'>
+            <field name='code'>2</field>
+            <field name='name'>IVA Responsable no Inscripto</field>
+            <field name='report_code_name'>RNI</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_IVANR'>
+            <field name='code'>3</field>
+            <field name='name'>IVA no Responsable</field>
+            <field name='report_code_name'>NR</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_IVAE'>
+            <field name='code'>4</field>
+            <field name='name'>IVA Sujeto Exento</field>
+            <field name='report_code_name'>SE</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_CF'>
+            <field name='code'>5</field>
+            <field name='name'>Consumidor Final</field>
+            <field name='report_code_name'>CF</field>
+	        <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_RM'>
+            <field name='code'>6</field>
+            <field name='name'>Responsable Monotributo</field>
+            <field name='report_code_name'>RM</field>
+	        <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_NOCATEG'>
+            <field name='code'>7</field>
+            <field name='name'>Sujeto no Categorizado</field>
+            <field name='report_code_name'>NC</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_EXT'>
+            <field name='code'>8</field>
+            <field name='name'>Proveedor del Exterior</field>
+            <field name='report_code_name'>PE</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_CLI_EXT'>
+            <field name='code'>9</field>
+            <field name='name'>Cliente del Exterior</field>
+            <field name='report_code_name'>CE</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_IVA_LIB'>
+            <field name='code'>10</field>
+            <field name='name'>IVA Liberado – Ley Nº 19.640</field>
+            <field name='report_code_name'>IL</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_IVARI_AP'>
+            <field name='code'>11</field>
+            <field name='name'>IVA Responsable Inscripto – Agente de Percepción</field>
+            <field name='report_code_name'>RIP</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_EVENTUAL'>
+            <field name='code'>12</field>
+            <field name='name'>Pequeño Contribuyente Eventual</field>
+            <field name='report_code_name'>PCE</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_MON_SOCIAL'>
+            <field name='code'>13</field>
+            <field name='name'>Monotributista Social</field>
+            <field name='report_code_name'>MS</field>
+            <field name='active' eval="True"/>
+        </record>
+
+        <record model='afip.responsability.type' id='res_EVENTUAL_SOCIAL'>
+            <field name='code'>14</field>
+            <field name='name'>Pequeño Contribuyente Eventual Social</field>
+            <field name='report_code_name'>PCS</field>
+            <field name='active' eval="True"/>
+        </record>
+    </data-->
+
+
+</odoo>
+        

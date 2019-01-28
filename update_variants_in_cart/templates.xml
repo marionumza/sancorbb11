@@ -1,0 +1,95 @@
+<openerp>
+    <data>
+
+        <template id="assets_frontend" inherit_id="website.assets_frontend" name="update_variants_in_cart assets">
+            <xpath expr="." position="inside">
+                <link rel='stylesheet' href="/update_variants_in_cart/static/src/css/styles.css"/>
+                <script type="text/javascript" src="/update_variants_in_cart/static/src/js/update-variants.js"/>
+                <script type="text/javascript" src="/update_variants_in_cart/static/src/js/add-to-cart-variant.js"/>
+            </xpath>
+        </template>
+
+        <template id="update_variant_in_cart" inherit_id="website_sale.cart_lines">
+            <xpath expr="//td/div[hasclass('text-muted', 'hidden-xs', 'small')]" position="after">
+                <dl t-if="line.product_id.attribute_value_ids" class="variants_info mt8">
+                    <t t-foreach="line.product_id.attribute_value_ids" t-as="value">
+                        <dt><t t-esc="value.attribute_id.name"/>:</dt>
+                        <dd class="text-muted"><t t-esc="value.name"/></dd>
+                    </t>
+                </dl>
+            </xpath>
+            <xpath expr="//a[hasclass('js_delete_product', 'no-decoration')]" position="replace">
+                <div class="cart-actions">
+                    <a href='#' class='js_delete_product no-decoration'> <small><i class='fa fa-trash-o'></i> Remove</small></a>
+                    <span class="oe_separator">|</span>
+                    <a t-if="line.product_id.attribute_value_ids" class='js_change_product no-decoration'><small><i class='fa fa-edit'></i> Change</small></a>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="variantUpdateForm" name="Variant Form">
+            <form class="variants_form cart" t-att-data-product-tmpl-id="product.product_tmpl_id.id"
+                  t-att-data-product-id="product.id"
+                  t-att-data-product-variations="product.product_tmpl_id.product_variant_ids.read(['price', 'lst_price', 'attribute_value_ids'])">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <h4 class="css_non_editable_mode_hidden decimal_precision" t-att-data-precision="product.currency_id.decimal_places"/>
+                <table class="variants">
+                    <tbody>
+                        <tr t-foreach="product.attribute_value_ids" t-as="value">
+                            <td>
+                                <label>
+                                    <t t-esc="value.attribute_id.name"/>
+                                </label>
+                            </td>
+                            <td class="value">
+                                <div class="form-group">
+                                    <select class="form-control" t-att-data-attribute_name="value.attribute_id.name" t-name="value.attribute_id.name">
+                                        <option value="">Choose an option</option>
+                                        <t t-foreach="value.attribute_id.value_ids"
+                                           t-as="attr_val">
+                                            <option t-att-value="attr_val.id"
+                                                    t-att-selected="'selected' if attr_val.id in product.attribute_value_ids.ids else None">
+                                                <t t-esc="attr_val.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <a t-if="product.attribute_value_ids[-1:][0] == value" class="reset_attributes no-decoration">
+                                    <i class="fa fa-undo"></i>
+                                    Clear
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="single_variant_wrap">
+                    <div class="alert alert-danger fade in msg"/>
+                    <div class="single_variant">
+                        <del class="text-danger mr8 lst_price" style="white-space: nowrap;" t-field="product.lst_price"
+                             t-options="{'widget': 'monetary','from_currency': product.currency_id, 'display_currency': website.currency_id}"/>
+                        <span t-field="product.price" class="discounted_price" style="white-space: nowrap;"
+                              t-options="{'widget': 'monetary','from_currency': product.currency_id, 'display_currency': website.currency_id}"/>
+                    </div>
+                    <div class="variant-add-to-cart variants_button">
+                        <div class="form-group quantity" style="float: left;">
+                            <input type="number" step="1" min="1" max="" class="form-control"
+                                   name="quantity" value="1" title="Qty" size="4"
+                                   pattern="[0-9]*"
+                                   inputmode="numeric"/>
+                        </div>
+                        <div class="uvc_update_and_cancel_button form-group">
+                            <button type="submit" class="btn btn-default a-submit single_add_to_cart_button">Update</button>
+                            <span id="cancel" title="Close" style="cursor: pointer; ">
+                                <i class="fa fa-close"></i> <u>Cancel</u>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="variant_id" class="variant_id" t-att-value="product.id"/>
+                    <input type="hidden" name="previous_line_id" class="previous_line_id"
+                           t-att-value="previous_line_id"/>
+                </div>
+            </form>
+        </template>
+
+    </data>
+</openerp>

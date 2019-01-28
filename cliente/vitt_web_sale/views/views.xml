@@ -1,0 +1,108 @@
+<odoo>
+   <template id="vitt_website_sale" inherit_id="website_sale.address">
+        <xpath expr="//form[@name='/shop/checkout']/div[1]" position="after">
+            <input type="hidden" name="field_required" t-att-value="'zip,localidad,first_name,last_name,street,street_number,main_id_number,main_id_category_id'" />
+        </xpath>
+        <xpath expr="//form[@name='/shop/checkout']/div[1]" position="replace">
+            <div t-attf-class="form-group #{error.get('first_name') and 'has-error' or ''} col-md-6 div_name">
+                <label class="control-label" for="name" style="font-family: Open Sans; font-weight: bold">Nombre(s) (*)</label>
+                <input type="text" name="first_name" class="form-control" t-att-value="'first_name' in checkout and checkout['first_name']" style="font-family: Open Sans"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('last_name') and 'has-error' or ''} col-md-6 div_name">
+                <label class="control-label" for="name" style="font-family: Open Sans; font-weight: bold">Apellido(s) (*)</label>
+                <input type="text" name="last_name" class="form-control" t-att-value="'last_name' in checkout and checkout['last_name']" style="font-family: Open Sans"/>
+            </div>
+        </xpath>
+        <xpath expr="//form[@name='/shop/checkout']/div[7]" position="replace">
+
+            <div t-attf-class="form-group #{error.get('main_id_category_id') and 'has-error' or ''} col-md-12" style="font-family: Open Sans">
+                <label class="control-label" for="main_id_category_id" style="font-family: Open Sans; font-weight: bold">Tipo de Documento (*)</label>
+                <select id="main_id_category_id" name="main_id_category_id" class="form-control">
+                    <option value="">ID Document Type...</option>
+                    <t t-foreach="main_id_category_ids" t-as="rid">
+                        <option t-att-value="rid.id" t-att-selected="rid.id == (main_id_category_id and main_id_category_id.id or -1)" style="font-family: Open Sans">
+                            <t t-esc="rid.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+           
+            <div t-attf-class="form-group #{error.get('main_id_number') and 'has-error' or ''} col-md-12">
+                <label class="control-label" for="main_id_number" style="font-family: Open Sans; font-weight: bold">Nro. Documento (*)</label>
+                <input type="text" name="main_id_number" class="form-control" t-att-value="'main_id_number' in checkout and checkout['main_id_number']" style="font-family: Open Sans"/>
+            </div>
+
+            <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-md-12 div_street">
+                <label class="control-label" for="street" style="font-family: Open Sans; font-weight: bold">Calle/Avenida (*)</label>
+                <input type="text" name="street" class="form-control" t-att-value="'street' in checkout and checkout['street']" style="font-family: Open Sans"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('street_number') and 'has-error' or ''} col-md-4">
+                <label class="control-label" for="street_number" style="font-family: Open Sans; font-weight: bold">Número (*)</label>
+                <input type="text" name="street_number" class="form-control" t-att-value="'street_number' in checkout and checkout['street_number']" style="font-family: Open Sans"/>
+            </div>
+        </xpath>
+        <xpath expr="//form[@name='/shop/checkout']/div[11]" position="replace">
+            <div t-attf-class="form-group #{error.get('street2') and 'has-error' or ''} col-md-8">
+                <label class="control-label label-optional" for="street2" style="font-family: Open Sans">Entre Calle/Esquina</label>
+                <input type="text" name="street2" class="form-control" t-att-value="'street2' in checkout and checkout['street2']" style="font-family: Open Sans"/>
+            </div>
+        </xpath>
+        <xpath expr="//form[@name='/shop/checkout']/div[11]" position="after">
+
+            <div t-attf-class="form-group #{error.get('floor') and 'has-error' or ''} col-md-6">
+                <label class="control-label label-optional" for="floor" style="font-family: Open Sans">Nro. Piso</label>
+                <input type="text" name="floor" class="form-control" t-att-value="'floor' in checkout and checkout['floor']" style="font-family: Open Sans"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('apartment') and 'has-error' or ''} col-md-6">
+                <label class="control-label label-optional" for="apartment" style="font-family: Open Sans">Nro. Departamento</label>
+                <input type="text" name="apartment" class="form-control" t-att-value="'apartment' in checkout and checkout['apartment']" style="font-family: Open Sans"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('localidad') and 'has-error' or ''} col-md-6">
+                <label class="control-label label-optional" for="localidad" style="font-family: Open Sans; font-weight: bold">Barrio/Localidad (*)</label>
+                <input type="text" name="localidad" class="form-control" t-att-value="'localidad' in checkout and checkout['localidad']" style="font-family: Open Sans"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('partido') and 'has-error' or ''} col-md-6">
+                <label class="control-label label-optional" for="partido" style="font-family: Open Sans">Partido</label>
+                <input type="text" name="partido" class="form-control" t-att-value="'partido' in checkout and checkout['partido']" style="font-family: Open Sans"/>
+            </div>
+
+            <div t-attf-class="form-group #{error.get('street3') and 'has-error' or ''} col-md-6">
+                <label class="control-label label-optional" for="street3" style="font-family: Open Sans">Información adicional de la dirección</label>
+                <input type="text" name="street3" class="form-control" t-att-value="'street3' in checkout and checkout['street3']" style="font-family: Open Sans"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('who_receive') and 'has-error' or ''} col-md-6">
+                <label class="control-label label-optional" for="who_receive" style="font-family: Open Sans">Quién Recibe:</label>
+                <input type="text" name="who_receive" class="form-control" t-att-value="'who_receive' in checkout and checkout['who_receive']" style="font-family: Open Sans"/>
+            </div>
+
+<!-- not visible
+            <div t-attf-class="form-group #{error.get('neighborhood') and 'has-error' or ''} col-md-12">
+                <label class="control-label label-optional" for="street2" style="font-family: Open Sans">Neighborhood</label>
+                <input type="text" name="neighborhood" class="form-control" t-att-value="'neighborhood' in checkout and checkout['neighborhood']" style="font-family: Open Sans"/>
+            </div>
+-->
+        </xpath>
+    </template>
+
+    <function model="ir.model.fields" name="formbuilder_whitelist">
+        <value>res.partner</value>
+        <value eval="[
+            'first_name',
+            'last_name',
+            'last_name',
+            'street3',
+            'neighborhood',
+            'floor',
+            'apartment',
+            'main_id_category_id',
+            'main_id_number',
+            'afip_responsability_type_id',
+            'street',
+            'street2',
+            'street_number',
+            'localidad',
+            'partido',
+            'who_receive',
+        ]"/>
+    </function>
+</odoo>

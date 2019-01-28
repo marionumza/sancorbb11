@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'olivier';
+    src: url('olivier.eot');
+    src: url('olivier.eot?#iefix') format('embedded-opentype'),
+        url('olivier.woff2') format('woff2'),
+        url('olivier.woff') format('woff'),
+        url('olivier.ttf') format('truetype'),
+        url('olivier.svg#olivier') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

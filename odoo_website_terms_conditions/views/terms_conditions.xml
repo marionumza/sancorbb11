@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+   		<record id="view_odoo_website_terms_conditions_form_view" model="ir.ui.view">
+            <field name="name">odoo.website.terms.conditions.form.view</field>
+            <field name="model">website.terms.conditions</field>
+            <field name="arch" type="xml">
+				<form string="Website Terms and Conditions" version="9.0">
+						<sheet>
+							<group>
+								<field name="title" />
+								<field name="name" />
+								<field name="terms_conditions" />
+							</group>
+						</sheet>
+				</form>
+            </field>
+        </record>
+
+        
+     	<record id="action_odoo_website_terms_conditions_menu" model="ir.actions.act_window">
+            <field name="name">Website Terms and Conditions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">website.terms.conditions</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+		
+		<menuitem id= "odoo_website_terms_conditions_menu" parent= "website.menu_website_configuration" name= "Website Terms and Conditions" action="action_odoo_website_terms_conditions_menu" sequence="200" />
+		
+        
+		
+    </data>
+</openerp>

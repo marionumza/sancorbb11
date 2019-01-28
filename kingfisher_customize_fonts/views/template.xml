@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<odoo>
+    <template active="False" customize_show="True" id="option_font_style_olivier_font" inherit_id="website.assets_frontend" name="option_font_style_olivier_font">
+        <xpath expr="." position="inside">
+            <link href="/kingfisher_customize_fonts/static/src/less/options/fonts/font-style-olivier-font.less" rel="stylesheet" type="text/less"/>
+        </xpath>
+    </template>
+
+
+    <template id="inherit_kingfisher_pro_theme_customize" inherit_id="kingfisher.kingfisher_pro_theme_customize">
+        <xpath expr="//div[@id='theme_customize_modal']//table[@name='font']//tr[3]" position='after'>
+            <td width="50%">
+                <label>
+                    <span class="font-style1" style="font-family: 'olivier', sans-serif;">Olivier</span>
+                    <input data-enable="less" data-xmlid="kingfisher_customize_fonts.option_font_style_olivier_font" name="theme" type="radio"/>
+                </label>
+            </td>
+        </xpath>
+    </template>
+</odoo>

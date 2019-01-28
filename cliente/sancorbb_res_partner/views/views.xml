@@ -1,0 +1,20 @@
+<odoo>
+    <record model="ir.ui.view" id="view_res_partner_form">
+        <field name="name">view.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']" position="after">
+                <page string="Sancor BB" name="sancorbb">
+                    <group>
+                        <group>
+                            <field name="child_name"/>
+                            <field name="birthdate"/>
+                        </group>
+                    </group>
+                </page>
+             </xpath>
+        </field>
+    </record>
+
+</odoo>

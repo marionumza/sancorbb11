@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Journal for MecradoPago -->
+        <record id="mercadopago_journal" model="account.journal">
+            <field name="name">Mercadopago</field>
+            <field name="code">MERCPAGO</field>
+            <field name="type">sale</field>
+            <!-- avoid being selected as default journal -->
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Payment Acquirer Data -->
+        <record id="payment.payment_acquirer_mercadopago" model="payment.acquirer">
+            <field name="name">MercadoPago</field>
+            <field name="image" type="base64" file="payment_mercadopago/static/src/img/mercadopago_icon.png"/>
+            <field name="provider">mercadopago</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="journal_id" ref="payment_mercadopago.mercadopago_journal"/>
+            <field name="view_template_id" ref="payment_mercadopago.mercadopago_form"/>
+            <field name="registration_view_template_id" ref="payment_mercadopago.mercado_s2s_form"/>
+            <field name="environment">test</field>
+            <field name="pre_msg"><![CDATA[
+<p>You will be redirected to the MercadoPago website after clicking on the payment button.</p>]]></field>
+            <field name='mercadopago_client_id'>dummy</field>
+            <field name="mercadopago_client_secret">dummy</field>
+        </record>
+
+
+        <!-- Payment Methods type data -->
+        <record id="visa_type" model="mercadopago.payment.methods">
+            <field name="name">VISA</field>
+            <field name="uni_id">visa</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="mastercard_type" model="mercadopago.payment.methods">
+            <field name="name">Mastercard</field>
+            <field name="uni_id">master</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="amex_type" model="mercadopago.payment.methods">
+            <field name="name">American Express</field>
+            <field name="uni_id">amex</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="mercadopago_cc_type" model="mercadopago.payment.methods">
+            <field name="name">Mercado Pago + Banco Patagonia</field>
+            <field name="uni_id">mercadopago_cc</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="naranja_type" model="mercadopago.payment.methods">
+                <field name="name">Naranja</field>
+            <field name="uni_id">naranja</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="nativa_type" model="mercadopago.payment.methods">
+            <field name="name">Nativa Mastercard</field>
+            <field name="uni_id">nativa</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="tarjeta_type" model="mercadopago.payment.methods">
+            <field name="name">Tarjeta Shopping</field>
+            <field name="uni_id">tarshop</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="cabal_type" model="mercadopago.payment.methods">
+            <field name="name">Cabal</field>
+            <field name="uni_id">cabal</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="cencosud_type" model="mercadopago.payment.methods">
+            <field name="name">Cencosud</field>
+            <field name="uni_id">cencosud</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="diners_type" model="mercadopago.payment.methods">
+            <field name="name">Diners</field>
+            <field name="uni_id">diners</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="argencard_type" model="mercadopago.payment.methods">
+            <field name="name">Argencard</field>
+            <field name="uni_id">argencard</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="tarjeta_walmart_type" model="mercadopago.payment.methods">
+            <field name="name">Tarjeta Walmart</field>
+            <field name="uni_id">cordial</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="cordobesa_type" model="mercadopago.payment.methods">
+            <field name="name">Cordobesa</field>
+            <field name="uni_id">cordobesa</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <record id="cmr_type" model="mercadopago.payment.methods">
+            <field name="name">CMR</field>
+            <field name="uni_id">cmr</field>
+            <field name="payment_type">credit_card</field>
+            <field name="type">credit_card</field>
+        </record>
+
+        <!--<record id="cmr_type" model="mercadopago.payment.methods">-->
+            <!--<field name="name">CMR</field>-->
+            <!--<field name="uni_id">cmr</field>-->
+            <!--<field name="payment_type">credit_card</field>-->
+            <!--<field name="type">credit_card</field>-->
+        <!--</record>-->
+
+        <record id="visa_debit_type" model="mercadopago.payment.methods">
+            <field name="name">Visa Débito</field>
+            <field name="uni_id">debvisa</field>
+            <field name="payment_type">debit_card</field>
+            <field name="type">debit_card</field>
+        </record>
+
+        <record id="maestro_debit_type" model="mercadopago.payment.methods">
+            <field name="name">Maestro</field>
+            <field name="uni_id">maestro</field>
+            <field name="payment_type">debit_card</field>
+            <field name="type">debit_card</field>
+        </record>
+
+        <record id="master_debito_type" model="mercadopago.payment.methods">
+            <field name="name">Master Débito</field>
+            <field name="uni_id">debmaster</field>
+            <field name="payment_type">debit_card</field>
+            <field name="type">debit_card</field>
+        </record>
+
+        <record id="cabal_debito_type" model="mercadopago.payment.methods">
+            <field name="name">Cabal Débito</field>
+            <field name="uni_id">debcabal</field>
+            <field name="payment_type">debit_card</field>
+            <field name="type">debit_card</field>
+        </record>
+
+        <record id="rapipago_other_type" model="mercadopago.payment.methods">
+            <field name="name">Rapipago</field>
+            <field name="uni_id">rapipago</field>
+            <field name="payment_type">ticket</field>
+            <field name="type">other</field>
+        </record>
+
+        <record id="pago_facil_debit_type" model="mercadopago.payment.methods">
+            <field name="name">Pago Facil</field>
+            <field name="uni_id">pagofacil</field>
+            <field name="payment_type">ticket</field>
+            <field name="type">other</field>
+        </record>
+
+        <record id="cargavirtual_type" model="mercadopago.payment.methods">
+            <field name="name">Kioscos y comercios cercanos</field>
+            <field name="uni_id">cargavirtual</field>
+            <field name="payment_type">ticket</field>
+            <field name="type">other</field>
+        </record>
+
+        <record id="provincia_pagos_type" model="mercadopago.payment.methods">
+            <field name="name">Provincia Pagos</field>
+            <field name="uni_id">bapropagos</field>
+            <field name="payment_type">ticket</field>
+            <field name="type">other</field>
+        </record>
+
+        <record id="redLink_type" model="mercadopago.payment.methods">
+            <field name="name">RedLink</field>
+            <field name="uni_id">redlink</field>
+            <field name="payment_type">atm</field>
+            <field name="type">other</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* vitt_product_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-16 19:02+0000\n"
+"PO-Revision-Date: 2018-11-16 19:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: vitt_product_template
+#: model:ir.model.fields,field_description:vitt_product_template.field_product_product_height
+#: model:ir.model.fields,field_description:vitt_product_template.field_product_template_height
+msgid "Height"
+msgstr "Altura"
+
+#. module: vitt_product_template
+#: model:ir.model.fields,field_description:vitt_product_template.field_product_product_length
+#: model:ir.model.fields,field_description:vitt_product_template.field_product_template_length
+msgid "Length"
+msgstr "Longitud"
+
+#. module: vitt_product_template
+#: model:ir.model,name:vitt_product_template.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de Producto"
+
+#. module: vitt_product_template
+#: model:ir.model.fields,help:vitt_product_template.field_product_product_height
+#: model:ir.model.fields,help:vitt_product_template.field_product_template_height
+msgid "The Height in cms"
+msgstr "La Altura está expresada en cms"
+
+#. module: vitt_product_template
+#: model:ir.model.fields,help:vitt_product_template.field_product_product_length
+#: model:ir.model.fields,help:vitt_product_template.field_product_template_length
+msgid "The Length in cms"
+msgstr "El Largo está expresado en cms"
+
+#. module: vitt_product_template
+#: model:ir.model.fields,help:vitt_product_template.field_product_product_width
+#: model:ir.model.fields,help:vitt_product_template.field_product_template_width
+msgid "The Width in cms"
+msgstr "El Ancho está expresado en cms"
+
+#. module: vitt_product_template
+#: model:ir.model.fields,field_description:vitt_product_template.field_product_product_width
+#: model:ir.model.fields,field_description:vitt_product_template.field_product_template_width
+msgid "Width"
+msgstr "Ancho"
+
