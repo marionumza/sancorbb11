@@ -7,6 +7,9 @@ from odoo.exceptions import UserError
 from odoo.tools import float_is_zero, float_compare, DEFAULT_SERVER_DATETIME_FORMAT
 from odoo import SUPERUSER_ID
 
+import logging
+_logger = logging.getLogger(__name__)
+
 
 class ProductPack(models.Model):
     _name = 'product.pack'
@@ -54,3 +57,68 @@ class ProductProduct(models.Model):
         if total > 0:
             self.list_price = total
         return res
+
+
+class StockMove(models.Model):
+    _inherit="stock.move"
+
+    @api.multi
+    def _action_done(self):
+        _logger.info("+++++++++++++++++++++>++++++++++")
+        """ Makes the move done and if all moves are done, it will finish the picking.
+		@return:
+		"""
+        context = self.env.context.copy() or {}
+        super(StockMove, self)._action_done()
+
+        ids = self
+
+        for id in ids:
+            data = self.browse(id.id)
+            erp_product_id = data.product_id.id
+
+            #product = self.env['product.product'].browse(erp_product_id)
+            available_qty = data.product_id.qty_available
+            incoming_qty = data.product_id.incoming_qty
+            outgoing_qty = data.product_id.outgoing_qty
+            virtual_available = data.product_id.virtual_available
+            quantity = data.product_qty
+
+            product_pack = self.env['product.product'].search([('is_pack', '=', True)])
+
+            for product in product_pack:
+
+                contains = False
+
+                if product.pack_ids:
+                    l = [(id_pack.product_id.qty_available/id_pack.qty_uom, id_pack.product_id.id)
+                         for id_pack in product.pack_ids if id_pack.qty_uom > 0]
+                    if l:
+                        less = l[0][0]
+
+                        for i in l:
+
+                            less = min(less, i[0])
+
+                            if i[1] == erp_product_id:
+                                contains = True
+
+                # for id_pack in product.pack_ids:
+                #
+                #     _logger.info("QUNATITYYYYYYY+++++++++++++++++++++>%r", [id_pack.qty_uom])
+                #
+                #     if id_pack.qty_uom > 0:
+                #
+                #         less = min(less, id_pack.product_id.qty_available/id_pack.qty_uom)
+                #
+                #         if id_pack.product_id.id == erp_product_id:
+                #             contains = True
+
+                if contains:
+
+                    wizard = self.env['stock.change.product.qty'].create({
+                        'product_id': product.id,
+                        'new_quantity': float(less),
+                        'location_id': data.location_id.id,
+                        })
+                    wizard.change_product_qty()
