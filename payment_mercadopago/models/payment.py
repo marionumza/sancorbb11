@@ -566,13 +566,16 @@ class PaymentTransactionMercadoPago(models.Model):
 
         transactions = []
 
-        date = datetime.now().date()
+        date = datetime.now()
 
         for t in transactions_draft:
 
-            delta_time = t.create_date.date - date
+            a = datetime.strftime(t.create_date)
+            b = datetime.strftime(date)
 
-            _logger.info("DEBUGTRANSACTIONS%r", delta_time, t.create_date.date, date)
+            delta_time = b - a
+
+            _logger.info("DEBUGTRANSACTIONS%r", delta_time, a, b)
 
             if delta_time <= 7:
                 transactions.append(t)
