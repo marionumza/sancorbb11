@@ -570,7 +570,7 @@ class PaymentTransactionMercadoPago(models.Model):
 
         for t in transactions_draft:
 
-            a = datetime.strftime(t.create_date)
+            a = t.create_date
             b = datetime.strftime(date)
 
             delta_time = b - a
