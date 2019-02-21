@@ -574,33 +574,37 @@ class PaymentTransactionMercadoPago(models.Model):
              ('acquirer_reference', '=', False)])
 
         if transactions_cancel:
+
+
             for cancel in transactions_cancel:
                 mp = MecradoPagoPayment(cancel.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(cancel)
 
-                _logger.info("TRANSACTIONNNNNNNNNN CANCELLLLL%r", cancel)
-
                 if search_payments:
+                    length = len(search_payments)
                     for payment in search_payments:
-                        # print("~~~~~~~~~",payment)
-                        cancel.write({'acquirer_reference': payment.get('id'), 'state': 'draft'})
-                        # data = {'data' : payment}
-                        # self.process_payment(data)
+                        if length > 1:
+                            if payment['status'] == 'approved':
+                                cancel.write({'acquirer_reference': payment.get('id')})
+                                # data = {'data' : payment}
+                                # self.process_payment(data)
+                            else:
+                                _logger.info("SEARCH PAYMENTS%r", payment)
+                        else:
+                            cancel.write({'acquirer_reference': payment.get('id')})
                 else:
                     _logger.info("No Payments found for %s Order" % cancel.sale_order_id.name)
         else:
             _logger.info("No Abandoned Cancel transaction found against MercadoPago Payment Gateway.")
 
-
         olddrafdays = datetime.strptime(str(datetime.now().date()), DATE_FORMAT) - timedelta(days=7)
 
-        # transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
-        #                                                                     ('state', 'in', ['draft']),
-        #                                                                     ('create_date', '>=', olddrafdays.strftime(DATETIME_FORMAT)),
-        #                                                                     ('reference','=', 'SBB03297'),
-        #                                                                     ('acquirer_reference', '=', False)])
+        transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
+                                                                            ('state', 'in', ['draft']),
+                                                                            ('create_date', '>=', olddrafdays.strftime(DATETIME_FORMAT)),
+                                                                            ('acquirer_reference', '=', False)])
 
-        transactions = self.env['payment.transaction'].sudo().search([('reference', '=', 'SBB03297')])
+        # transactions = self.env['payment.transaction'].sudo().search([('reference', '=', 'SBB03297')])
 
         print("Transactions from Cron that are abandoned : ", transactions)
         if transactions:
@@ -608,13 +612,8 @@ class PaymentTransactionMercadoPago(models.Model):
                 mp = MecradoPagoPayment(transaction.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(transaction)
 
-                # _logger.info("TRANSACTIONNNNNNNNNN%r", transaction)
-                # _logger.i("SEARCH PAYMENTS%r", search_payments)
-
                 if search_payments:
-
                     length = len(search_payments)
-
                     for payment in search_payments:
                         # print("~~~~~~~~~",payment)
 
@@ -625,10 +624,9 @@ class PaymentTransactionMercadoPago(models.Model):
                                 # data = {'data' : payment}
                                 # self.process_payment(data)
                             else:
-                                _logger.i("SEARCH PAYMENTS%r", payment)
+                                _logger.info("SEARCH PAYMENTS%r", payment)
                         else:
                             transaction.write({'acquirer_reference': payment.get('id')})
-
 
                 else:
                     _logger.info("No Payments found for %s Order"% transaction.sale_order_id.name)
@@ -716,8 +714,6 @@ class PaymentTransactionMercadoPago(models.Model):
                     _logger.info("Some error : %s ", tx.sale_order_id.name)
                     #tx.sale_order_id.with_context(send_email=True).action_confirm()
             return True
-
-
 
 class MercadoPagoPaymentToken(models.Model):
     _inherit = "payment.token"
