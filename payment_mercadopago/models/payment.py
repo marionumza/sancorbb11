@@ -608,22 +608,31 @@ class PaymentTransactionMercadoPago(models.Model):
                 mp = MecradoPagoPayment(transaction.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(transaction)
 
-                _logger.info("TRANSACTIONNNNNNNNNN%r", transaction)
-                _logger.info("SEARCH PAYMENTS%r", search_payments)
+                # _logger.info("TRANSACTIONNNNNNNNNN%r", transaction)
+                # _logger.i("SEARCH PAYMENTS%r", search_payments)
+
+                length = len(search_payments)
 
                 if search_payments:
                     for payment in search_payments:
                         # print("~~~~~~~~~",payment)
-                        transaction.write({'acquirer_reference':payment.get('id')})
-                        # data = {'data' : payment}
-                        # self.process_payment(data)
+
+                        if length > 1:
+
+                            if payment['status'] == 'approved':
+                                transaction.write({'acquirer_reference':payment.get('id')})
+                                # data = {'data' : payment}
+                                # self.process_payment(data)
+                            else:
+                                _logger.i("SEARCH PAYMENTS%r", payment)
+                        else:
+                            transaction.write({'acquirer_reference': payment.get('id')})
+
+
                 else:
                     _logger.info("No Payments found for %s Order"% transaction.sale_order_id.name)
         else:
             _logger.info("No Abandoned transaction found against MercadoPago Payment Gateway.")
-
-
-
 
     def process_payment(self, response):
         _logger.info(
