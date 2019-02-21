@@ -565,16 +565,45 @@ class PaymentTransactionMercadoPago(models.Model):
     def _cron_recover_abandoned_payment_mercadopago(self):
         _logger.info("Checking for Abandoned Payments from MercadoPago. Trying to recover Payment Transactions.")
 
-        olddays = datetime.strptime(str(datetime.now().date()), DATE_FORMAT) - timedelta(days=7)
+        oldcancelday = datetime.strptime(str(datetime.now().date()), DATE_FORMAT) - timedelta(days=3)
+
+        transactions_cancel = self.env['payment.transaction'].sudo().search(
+            [('provider', '=', 'mercadopago'),
+             ('state', 'in', ['cancel']),
+             ('create_date', '>=', oldcancelday.strftime(DATETIME_FORMAT)),
+             ('acquirer_reference', '=', False)])
+
+        if transactions_cancel:
+            for cancel in transactions_cancel:
+                mp = MecradoPagoPayment(cancel.acquirer_id)
+                search_payments = mp.search_mercadopago_payment(cancel)
+
+                _logger.info("TRANSACTIONNNNNNNNNN CANCELLLLL%r", cancel)
+
+                if search_payments:
+                    for payment in search_payments:
+                        # print("~~~~~~~~~",payment)
+                        cancel.write({'acquirer_reference': payment.get('id'), 'state': 'draft'})
+                        # data = {'data' : payment}
+                        # self.process_payment(data)
+                else:
+                    _logger.info("No Payments found for %s Order" % cancel.sale_order_id.name)
+        else:
+            _logger.info("No Abandoned Cancel transaction found against MercadoPago Payment Gateway.")
+
+
+        olddrafdays = datetime.strptime(str(datetime.now().date()), DATE_FORMAT) - timedelta(days=7)
 
         transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
                                                                             ('state', 'in', ['draft']),
-                                                                            ('create_date', '>=', olddays.strftime(DATETIME_FORMAT)),
+                                                                            ('create_date', '>=', olddrafdays.strftime(DATETIME_FORMAT)),
+                                                                            ('reference','=', 'SBB03297'),
                                                                             ('acquirer_reference', '=', False)])
 
         print("Transactions from Cron that are abandoned : ", transactions)
         if transactions:
             for transaction in transactions:
+
 
 
                 mp = MecradoPagoPayment(transaction.acquirer_id)
@@ -593,31 +622,7 @@ class PaymentTransactionMercadoPago(models.Model):
         else:
             _logger.info("No Abandoned transaction found against MercadoPago Payment Gateway.")
 
-        oldday = datetime.strptime(str(datetime.now().date()), DATE_FORMAT) - timedelta(days=3)
 
-        transactions_cancel = self.env['payment.transaction'].sudo().search(
-            [('provider', '=', 'mercadopago'),
-             ('state', 'in', ['cancel']),
-             ('create_date', '>=', oldday.strftime(DATETIME_FORMAT)),
-             ('acquirer_reference', '=', False)])
-
-        if transactions_cancel:
-            for cancel in transactions_cancel:
-                mp = MecradoPagoPayment(cancel.acquirer_id)
-                search_payments = mp.search_mercadopago_payment(cancel)
-
-                _logger.info("TRANSACTIONNNNNNNNNN%r", cancel)
-
-                if search_payments:
-                    for payment in search_payments:
-                        # print("~~~~~~~~~",payment)
-                        cancel.write({'acquirer_reference': payment.get('id'), 'state': 'draft'})
-                        # data = {'data' : payment}
-                        # self.process_payment(data)
-                else:
-                    _logger.info("No Payments found for %s Order" % cancel.sale_order_id.name)
-        else:
-            _logger.info("No Abandoned Cancel transaction found against MercadoPago Payment Gateway.")
 
 
     def process_payment(self, response):
