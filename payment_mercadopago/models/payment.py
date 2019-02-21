@@ -5,7 +5,7 @@ from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.exceptions import UserError
 import logging
 import mercadopago
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import pprint
 
@@ -562,9 +562,19 @@ class PaymentTransactionMercadoPago(models.Model):
 
     def _cron_recover_abandoned_payment_mercadopago(self):
         _logger.info("Checking for Abandoned Payments from MercadoPago. Trying to recover Payment Transactions.")
-        transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'), ('state', 'in', ['draft']),('acquirer_reference', '=', False)])
+        transactions_draft = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'), ('state', 'in', ['draft']),('acquirer_reference', '=', False)])
 
-        print("Transactions from Cron that are abandoned : ",transactions)
+        transactions = []
+        date = datetime.now()
+        olddays = date - timedelta(7)
+
+
+        for t in transactions_draft:
+            _logger.info("FECHA DE CREADOOOOOOOOO%r", t.create_date)
+
+
+
+        print("Transactions from Cron that are abandoned : ", transactions)
         if transactions:
             for transaction in transactions:
                 mp = MecradoPagoPayment(transaction.acquirer_id)
