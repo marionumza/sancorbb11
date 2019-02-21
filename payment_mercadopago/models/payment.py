@@ -594,11 +594,15 @@ class PaymentTransactionMercadoPago(models.Model):
 
         olddrafdays = datetime.strptime(str(datetime.now().date()), DATE_FORMAT) - timedelta(days=7)
 
+        # transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
+        #                                                                     ('state', 'in', ['draft']),
+        #                                                                     ('create_date', '>=', olddrafdays.strftime(DATETIME_FORMAT)),
+        #                                                                     ('reference','=', 'SBB03297'),
+        #                                                                     ('acquirer_reference', '=', False)])
+
         transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
-                                                                            ('state', 'in', ['draft']),
-                                                                            ('create_date', '>=', olddrafdays.strftime(DATETIME_FORMAT)),
-                                                                            ('reference','=', 'SBB03297'),
-                                                                            ('acquirer_reference', '=', False)])
+                                                                      ('reference', '=', 'SBB03297'),
+                                                                      ('acquirer_reference', '=', False)])
 
         print("Transactions from Cron that are abandoned : ", transactions)
         if transactions:
