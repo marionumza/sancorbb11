@@ -609,6 +609,7 @@ class PaymentTransactionMercadoPago(models.Model):
                 search_payments = mp.search_mercadopago_payment(transaction)
 
                 _logger.info("TRANSACTIONNNNNNNNNN%r", transaction)
+                _logger("SEARCH PAYMENTS%r", search_payments)
 
                 if search_payments:
                     for payment in search_payments:
