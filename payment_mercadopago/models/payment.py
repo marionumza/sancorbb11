@@ -611,12 +611,10 @@ class PaymentTransactionMercadoPago(models.Model):
                 # _logger.info("TRANSACTIONNNNNNNNNN%r", transaction)
                 # _logger.i("SEARCH PAYMENTS%r", search_payments)
 
-                length = 0
-
-                for l in search_payments:
-                    length+=1
-
                 if search_payments:
+
+                    length = len(search_payments)
+
                     for payment in search_payments:
                         # print("~~~~~~~~~",payment)
 
