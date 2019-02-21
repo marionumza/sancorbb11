@@ -585,13 +585,13 @@ class PaymentTransactionMercadoPago(models.Model):
                     for payment in search_payments:
                         if length > 1:
                             if payment['status'] == 'approved':
-                                cancel.write({'acquirer_reference': payment.get('id')})
+                                cancel.write({'acquirer_reference': payment.get('id'), 'state': 'draft'})
                                 # data = {'data' : payment}
                                 # self.process_payment(data)
                             else:
                                 _logger.info("SEARCH PAYMENTS%r", payment)
                         else:
-                            cancel.write({'acquirer_reference': payment.get('id')})
+                            cancel.write({'acquirer_reference': payment.get('id'), 'state': 'draft'})
                 else:
                     _logger.info("No Payments found for %s Order" % cancel.sale_order_id.name)
         else:
