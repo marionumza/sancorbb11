@@ -600,16 +600,11 @@ class PaymentTransactionMercadoPago(models.Model):
         #                                                                     ('reference','=', 'SBB03297'),
         #                                                                     ('acquirer_reference', '=', False)])
 
-        transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
-                                                                      ('reference', '=', 'SBB03297'),
-                                                                      ('acquirer_reference', '=', False)])
+        transactions = self.env['payment.transaction'].sudo().search([('reference', '=', 'SBB03297')])
 
         print("Transactions from Cron that are abandoned : ", transactions)
         if transactions:
             for transaction in transactions:
-
-
-
                 mp = MecradoPagoPayment(transaction.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(transaction)
 
