@@ -568,7 +568,7 @@ class PaymentTransactionMercadoPago(models.Model):
 
 
         transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
-                                                                            ('state', 'in', ['draft']),
+                                                                            #('state', 'in', ['draft']),
                                                                             ('create_date', '>', old7days),
                                                                             ('reference', '=', 'SBB03297'),
                                                                             ('acquirer_reference', '=', False)])
