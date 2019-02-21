@@ -562,23 +562,25 @@ class PaymentTransactionMercadoPago(models.Model):
 
     def _cron_recover_abandoned_payment_mercadopago(self):
         _logger.info("Checking for Abandoned Payments from MercadoPago. Trying to recover Payment Transactions.")
-        transactions_draft = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'), ('state', 'in', ['draft']),('acquirer_reference', '=', False)])
 
-        transactions = []
         date = datetime.now()
-        olddays = date - timedelta(7)
+        old7days = date - timedelta(8)
 
 
-        for t in transactions_draft:
-            _logger.info("FECHA DE CREADOOOOOOOOO%r", t.create_date)
-
-
+        transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
+                                                                            ('state', 'in', ['draft']),
+                                                                            ('create_date', '>', old7days),
+                                                                            ('reference', '=', 'SBB03297'),
+                                                                            ('acquirer_reference', '=', False)])
 
         print("Transactions from Cron that are abandoned : ", transactions)
         if transactions:
             for transaction in transactions:
                 mp = MecradoPagoPayment(transaction.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(transaction)
+
+                _logger.info("SEARCHHHHHHHHH PAYMENTSSSSS%r", search_payments)
+
                 if search_payments:
                     for payment in search_payments:
                         # print("~~~~~~~~~",payment)
@@ -589,6 +591,33 @@ class PaymentTransactionMercadoPago(models.Model):
                     _logger.info("No Payments found for %s Order"% transaction.sale_order_id.name)
         else:
             _logger.info("No Abandoned transaction found against MercadoPago Payment Gateway.")
+
+        old3days = date - timedelta(4)
+
+        transactions_cancel = self.env['payment.transaction'].sudo().search(
+            [('provider', '=', 'mercadopago'),
+             ('state', 'in', ['cancel']),
+             ('create_date', '>', old3days),
+             ('acquirer_reference', '=', False)])
+
+        if transactions_cancel:
+            for cancel in transactions_cancel:
+                mp = MecradoPagoPayment(cancel.acquirer_id)
+                search_payments = mp.search_mercadopago_payment(cancel)
+
+                _logger.info("SEARCHHHHHHHHH CANCEL PAYMENTSSSSS%r", search_payments)
+
+                if search_payments:
+                    for payment in search_payments:
+                        # print("~~~~~~~~~",payment)
+                        cancel.write({'acquirer_reference': payment.get('id'), 'state': 'draft'})
+                        # data = {'data' : payment}
+                        # self.process_payment(data)
+                else:
+                    _logger.info("No Payments found for %s Order" % cancel.sale_order_id.name)
+        else:
+            _logger.info("No Abandoned Cancel transaction found against MercadoPago Payment Gateway.")
+
 
     def process_payment(self, response):
         _logger.info(
