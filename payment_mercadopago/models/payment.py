@@ -576,13 +576,11 @@ class PaymentTransactionMercadoPago(models.Model):
         if transactions:
             for transaction in transactions:
 
-                transaction = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
-                                                                             ('reference', '=', 'SBB03297')])
 
                 mp = MecradoPagoPayment(transaction.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(transaction)
 
-                _logger.info("SEARCHHHHHHHHH PAYMENTSSSSS%r", search_payments)
+                _logger.info("TRANSACTIONNNNNNNNNN%r", transaction)
 
                 if search_payments:
                     for payment in search_payments:
@@ -607,6 +605,9 @@ class PaymentTransactionMercadoPago(models.Model):
             for cancel in transactions_cancel:
                 mp = MecradoPagoPayment(cancel.acquirer_id)
                 search_payments = mp.search_mercadopago_payment(cancel)
+
+                _logger.info("TRANSACTIONNNNNNNNNN%r", cancel)
+
                 if search_payments:
                     for payment in search_payments:
                         # print("~~~~~~~~~",payment)
