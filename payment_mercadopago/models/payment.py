@@ -5,13 +5,15 @@ from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.exceptions import UserError
 import logging
 import mercadopago
-from datetime import datetime, timedelta
 import json
 import pprint
 
 from werkzeug import urls, utils
 from odoo.http import request
 from .mercadopago_request import MecradoPagoPayment
+
+from datetime import datetime, timedelta
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT
 
 
 _logger = logging.getLogger(__name__)
@@ -563,12 +565,11 @@ class PaymentTransactionMercadoPago(models.Model):
     def _cron_recover_abandoned_payment_mercadopago(self):
         _logger.info("Checking for Abandoned Payments from MercadoPago. Trying to recover Payment Transactions.")
 
-        date = datetime.now()
-        olddays = date - timedelta(8)
+        olddays = datetime.strptime(datetime.now(), DATE_FORMAT) - timedelta(days=7)
 
         transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
                                                                             ('state', 'in', ['draft']),
-                                                                            ('create_date', '>', olddays),
+                                                                            ('create_date', '>=', olddays.strftime(DATETIME_FORMAT)),
                                                                             ('acquirer_reference', '=', False)])
 
         print("Transactions from Cron that are abandoned : ", transactions)
@@ -594,12 +595,12 @@ class PaymentTransactionMercadoPago(models.Model):
         else:
             _logger.info("No Abandoned transaction found against MercadoPago Payment Gateway.")
 
-        olddays = date - timedelta(4)
+        olddays = datetime.strptime(datetime.now(), DATE_FORMAT) - timedelta(days=3)
 
         transactions_cancel = self.env['payment.transaction'].sudo().search(
             [('provider', '=', 'mercadopago'),
              ('state', 'in', ['cancel']),
-             ('create_date', '>', olddays),
+             ('create_date', '>=', olddays.strftime(DATETIME_FORMAT)),
              ('acquirer_reference', '=', False)])
 
         if transactions_cancel:
