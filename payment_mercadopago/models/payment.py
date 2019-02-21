@@ -564,12 +564,11 @@ class PaymentTransactionMercadoPago(models.Model):
         _logger.info("Checking for Abandoned Payments from MercadoPago. Trying to recover Payment Transactions.")
 
         date = datetime.now()
-        old7days = date - timedelta(8)
-
+        olddays = date - timedelta(8)
 
         transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'),
                                                                             ('state', 'in', ['draft']),
-                                                                            ('create_date', '>', old7days),
+                                                                            ('create_date', '>', olddays),
                                                                             ('acquirer_reference', '=', False)])
 
         print("Transactions from Cron that are abandoned : ", transactions)
@@ -595,12 +594,12 @@ class PaymentTransactionMercadoPago(models.Model):
         else:
             _logger.info("No Abandoned transaction found against MercadoPago Payment Gateway.")
 
-        old3days = date - timedelta(4)
+        olddays = date - timedelta(4)
 
         transactions_cancel = self.env['payment.transaction'].sudo().search(
             [('provider', '=', 'mercadopago'),
              ('state', 'in', ['cancel']),
-             ('create_date', '>', old3days),
+             ('create_date', '>', olddays),
              ('acquirer_reference', '=', False)])
 
         if transactions_cancel:
