@@ -254,26 +254,25 @@
                                     </t>
                                 </ul>
                                 <div class="view">
-                                     <!--<div class="shopping-cart">
+                                    <!-- <div class="shopping-cart">
                                         <a t-att-href="'/shop/product/%s' % slug(slide)">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
                                         <t t-esc="slide.product_style_tag_id.name"/>
-                                    </div> -->
+                                    </div>-->
 
                                  <div class="shopping-cart">
-                                        <input name="product_id" t-att-value="slide.product_style_tag_id" type="hidden"/>
+                                        <input name="product_id" t-att-value="slide.product_variant_id.id" type="hidden"/>
 
-                                        <t t-if="len(slide.product_style_tag_id) == 1">
+                                        <t t-if="len(slide.product_variant_ids) == 1">
                                             <a class="a-submit">
                                                 <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                             </a>
                                         </t>
-                                        <t t-if="len(slide.product_style_tag_id) &gt; 1">
+                                        <t t-if="len(slide.product_variant_ids) &gt; 1">
                                             <a t-att-href="keep('/shop/product/%s' % slug(slide), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                                                 <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                             </a>
-                                            <p>prueba</p>
                                         </t>
                                     </div>
                                     <!-- <div class="shopping-cart">
