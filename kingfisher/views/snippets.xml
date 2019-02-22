@@ -255,14 +255,14 @@
                                 </ul>
                                 <div class="view">
                                     <div class="shopping-cart">
-                                        <a class="js_check_product a-submit" t-att-href="'/shop/product/%s' % slug(product)" id="add_to_cart">
+                                        <a t-attf-href="/shop/product/#{ slug(product) }">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
                                     </div>
 
                                    <!-- <div class="shopping-cart">
                                         <input name="product_id" t-att-value="product.product_variant_id.id" type="hidden"/>
-                                       <p> pruebaa</p>
+
                                         <t t-if="len(product.product_variant_ids) == 1">
                                             <a class="a-submit">
                                                 <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
@@ -557,7 +557,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba1</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -607,7 +606,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba2</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -661,7 +659,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba3</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -712,7 +709,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba4</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -763,7 +759,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba5</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -817,7 +812,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba6</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -868,7 +862,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba7</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -919,7 +912,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba8</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -970,7 +962,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba9</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -1024,7 +1015,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba10</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -1075,7 +1065,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba11</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -1126,7 +1115,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba12</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -1177,7 +1165,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba13</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
@@ -1228,7 +1215,6 @@
                                                         </ul>
                                                         <div class="view">
                                                             <div class="shopping-cart">
-                                                                <p>prueba14</p>
                                                                 <a t-attf-href="/shop/product/#{ slug(product) }">
                                                                     <img src="/kingfisher/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
                                                                 </a>
