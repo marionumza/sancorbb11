@@ -255,7 +255,7 @@
                                 </ul>
                                 <div class="view">
                                     <div class="shopping-cart">
-                                        <a class="js_check_product a-submit" href="'/shop/product/%s' % slug(product)" id="add_to_cart">
+                                        <a class="js_check_product a-submit" t-att-href="'/shop/product/%s' % slug(product)" id="add_to_cart">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
                                     </div>
