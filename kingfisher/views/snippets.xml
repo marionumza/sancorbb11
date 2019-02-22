@@ -273,6 +273,7 @@
                                             <a t-att-href="keep('/shop/product/%s' % slug(slide), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                                                 <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                             </a>
+                                            <p>prueba</p>
                                         </t>
                                     </div>
                                     <!-- <div class="shopping-cart">
