@@ -265,7 +265,7 @@
                                         <input name="product_id" t-att-value="slide.product_variant_id.id" type="hidden"/>
 
                                         <t t-if="len(slide.product_variant_ids) == 1">
-                                            <a class="a-submit">
+                                            <a class="a-submit" t-att-href="keep('/shop/product/%s' % slug(slide), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                                                 <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                             </a>
                                         </t>
