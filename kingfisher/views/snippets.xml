@@ -254,13 +254,13 @@
                                     </t>
                                 </ul>
                                 <div class="view">
-                                  <!--  <div class="shopping-cart">
+                                    <div class="shopping-cart">
                                         <a href="#">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
-                                    </div>-->
+                                    </div>
 
-                                    <div class="shopping-cart">
+                                   <!-- <div class="shopping-cart">
                                         <input name="product_id" t-att-value="product.product_variant_id.id" type="hidden"/>
                                        <p> pruebaa</p>
                                         <t t-if="len(product.product_variant_ids) == 1">
@@ -273,7 +273,7 @@
                                                 <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                             </a>
                                         </t>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class="pwp-info">
