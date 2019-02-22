@@ -255,7 +255,7 @@
                                 </ul>
                                 <div class="view">
                                     <div class="shopping-cart">
-                                        <a t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
+                                        <a t-att-href="'/shop/product/%s' % slug(slide)">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
                                     </div>
