@@ -254,10 +254,24 @@
                                     </t>
                                 </ul>
                                 <div class="view">
-                                    <div class="shopping-cart">
+                                  <!--  <div class="shopping-cart">
                                         <a href="#">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
+                                    </div>-->
+
+                                    <div class="shopping-cart">
+                                        <input name="product_id" t-att-value="product.product_variant_id.id" type="hidden"/>
+                                        <t t-if="len(product.product_variant_ids) == 1">
+                                            <a class="a-submit">
+                                                <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
+                                            </a>
+                                        </t>
+                                        <t t-if="len(product.product_variant_ids) &gt; 1">
+                                            <a t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
+                                                <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
+                                            </a>
+                                        </t>
                                     </div>
                                 </div>
                             </div>
@@ -268,11 +282,11 @@
                                     </a>
                                 </p>
                                 <p class="price">
-
+                                    <span class="price">
                                      <t t-if="slide.website_price_difference and website.get_current_pricelist().discount_policy == 'without_discount'">
                                             <del class="text-danger mr8" style="white-space: nowrap;" t-field="slide.lst_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                                         </t>
-                                    <span class="price">
+
                                         <span t-field="slide.website_price"
                                               t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                                     </span>
