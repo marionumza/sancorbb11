@@ -10,7 +10,7 @@
 		
 		
 		<!-- Product item used by /shop inherit -->
-		<template id="product_listing_page_extended" inherit_id='website_sale.king_pro_products_item'>
+		<template id="product_listing_page_extended" inherit_id='king_pro_products_item'>
 
 			<!-- Add Label on Shop/Product Listing Page -->
 			<xpath expr="//div[@class='ribbon-wrapper']" position="after">
