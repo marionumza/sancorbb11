@@ -237,11 +237,6 @@
                                 <div t-if="slide and slide.product_style_tag_id" t-att-class="'%s' % slide.product_style_tag_id.color if slide and slide.product_style_tag_id else ''">
                                     <t t-esc="slide.product_style_tag_id.name"/>
                                 </div>
-                                <div class="topleft">
-                                    <span>
-                                        <img class="img img-responsive" data-oe-model="ir.ui.view" data-oe-id="1963" data-oe-field="arch" data-oe-xpath="/data/xpath/t/div[1]/span[1]/img[1]" src="/web/image/website.product.label/2/image?unique=0e0c8f0" title="10% Off" style="height:100px;              width:100px;              margin-left:0px;              margin-right:0px;              margin-top:0px;              margin-bottom:0px;">
-                                    </span>
-                                </div>
                                 <a t-att-href="'/shop/product/%s' % slug(slide)">
                                     <img class="front" t-att-alt="slide.name" t-att-title="slide.name" t-att-src="website.image_url(slide, 'image')"/>
                                     <img class="back" t-att-alt="slide.name" t-att-title="slide.name" t-att-src="website.image_url(slide, 'flip_image')"/>
