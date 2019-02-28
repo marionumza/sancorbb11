@@ -761,9 +761,9 @@
                         <div class="pwp-img">
                             <a itemprop="url" t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                                 <img class="img img-responsive" itemprop="image" t-att-alt="product.name" t-att-src="website.image_url(product, 'image', None if product_image_big else '300x300')"/>
-                            <p>Holaaaaaaaa</p>
-                            </a>
 
+                            </a>
+                            <p>Holaaaaaaaa</p><p>Holaaaaaaaa</p>
                             <!-- odoo11 -->
                             <!-- place here for Wishlist and compare products  -->
                             <div class="product_price compare-wishlist-wrapper" t-if="product.product_variant_ids"> </div>  
