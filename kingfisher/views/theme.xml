@@ -763,7 +763,6 @@
                                 <img class="img img-responsive" itemprop="image" t-att-alt="product.name" t-att-src="website.image_url(product, 'image', None if product_image_big else '300x300')"/>
 
                             </a>
-                            <p>Holaaaaaaaa</p><p>Holaaaaaaaa</p>
                             <!-- odoo11 -->
                             <!-- place here for Wishlist and compare products  -->
                             <div class="product_price compare-wishlist-wrapper" t-if="product.product_variant_ids"> </div>  
@@ -781,6 +780,7 @@
                                         <span t-esc="product.website_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                                         <span itemprop="price" style="display:none;" t-esc="product.website_price"/>
                                         <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
+                                        <p>Holaaaaaaaa</p><p>Holaaaaaaaa</p>
                                     </b>
                                 </span>
                             </p>
