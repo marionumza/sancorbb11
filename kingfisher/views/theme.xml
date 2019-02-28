@@ -759,9 +759,9 @@
                 <div itemscope="itemscope" itemtype="http://schema.org/Product">
                     <div class="cs-product">
                         <div class="pwp-img">
-                          <!--  <a itemprop="url" t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
+                            <a itemprop="url" t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                                 <img class="img img-responsive" itemprop="image" t-att-alt="product.name" t-att-src="website.image_url(product, 'image', None if product_image_big else '300x300')"/>
-                            </a>-->
+                            </a>
 
                             <!-- odoo11 -->
                             <!-- place here for Wishlist and compare products  -->
