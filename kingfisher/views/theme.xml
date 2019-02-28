@@ -767,12 +767,13 @@
                             <!-- place here for Wishlist and compare products  -->
                             <div class="product_price compare-wishlist-wrapper" t-if="product.product_variant_ids"> </div>  
                         </div>
+                        <div style="background-color:blue"> gfsgsgsggs</div>
                         <div class="pwp-info">
                             <p class="pwpi-title">
                                 <a itemprop="name" t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))" t-field="product.name"/>
                             </p>
                             <p class="price">
-                                <span class="price" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offerrrrrrrr" t-if="product.product_variant_ids">
+                                <span class="price" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" t-if="product.product_variant_ids">
                                     <b>
                                         <t t-if="product.website_price_difference and website.get_current_pricelist().discount_policy == 'without_discount'">
                                             <del class="text-danger mr8" style="white-space: nowrap;" t-esc="compute_currency(product.website_public_price)" t-options="{'widget': 'monetary', 'display_currency': website.get_current_pricelist().currency_id, 'from_currency': website.currency_id}"/>
