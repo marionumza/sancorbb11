@@ -9,10 +9,10 @@
 		</template>
 		
 		
-		<!-- Product item used by /slider -->
-		<template id="product_listing_page_slide" inherit_id="kingfisher.kingfisher_cat_slider_view">
+		<!-- Product item used by /slider
+		<template id="product_listing_page_slide" inherit_id="kingfisher.kingfisher_cat_slider_view"> -->
 
-			<!-- slider -->
+			<!-- slider
 			<xpath expr="//div[@class='pwp-img']" position="inside">
 				<t t-if="slide.select_label">
 					 <div t-att-class="slide.select_label.position">
@@ -29,14 +29,13 @@
 					 </div>
 		      	</t>
 			</xpath>
-		</template>
+		</template>-->
 
-		<!-- Product item used by /shop inherit -->
-		<template id="product_listing_page_extended" inherit_id='website_sale.products_item'>
+		<!-- Product item used by /shop inherit
+		<template id="product_listing_page_extended" inherit_id='website_sale.products_item'>-->
 
-			<!-- Add Label on Shop/Product Listing Page -->
+			<!-- Add Label on Shop/Product Listing Page
 			<xpath expr="//div[@class='pwp-img']" position="inside">
-			<!--<xpath expr="//div[@class='ribbon-wrapper']" position="after"> -->
 				<t t-if="product.select_label">
 					 <div t-att-class="product.select_label.position">
 						<span>
@@ -53,7 +52,7 @@
 		      	</t>
 			</xpath>
 
-		</template>
+		</template>-->
 
 
 		<!-- /shop/product single product page -->
