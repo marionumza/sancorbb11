@@ -10,7 +10,7 @@
 		
 		
 		<!-- Product item used by /slider -->
-		<template id="product_listing_page_slide" >
+		<template id="product_listing_page_slide" inherit_id="website.homepage">
 
 			<!-- slider -->
 			<xpath expr="//div[@class='shopping-cart']" position="inside">
