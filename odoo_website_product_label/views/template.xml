@@ -9,6 +9,28 @@
 		</template>
 		
 		
+		<!-- Product item used by /slider -->
+		<template id="product_listing_page_slider" inherit_id='website_sale.products'>
+
+			<!-- slider -->
+			<xpath expr="//div[@class='pwp-img']" position="inside">
+				<t t-if="product.select_label">
+					 <div t-att-class="product.select_label.position">
+						<span>
+							<img class="img img-responsive"
+								t-att-src="website.image_url(product.select_label, 'image')" t-att-title="product.select_label.name"
+								t-attf-style="height:#{product.select_label.height or '0px'};
+											  width:#{product.select_label.width or '0px'};
+											  margin-left:#{product.select_label.margin_left or '0px'};
+											  margin-right:#{product.select_label.margin_right or '0px'};
+											  margin-top:#{product.select_label.margin_top or '0px'};
+											  margin-bottom:#{product.select_label.margin_bottom or '0px'};" />
+						</span>
+					 </div>
+		      	</t>
+			</xpath>
+		</template>
+
 		<!-- Product item used by /shop inherit -->
 		<template id="product_listing_page_extended" inherit_id='website_sale.products_item'>
 
@@ -30,7 +52,7 @@
 					 </div>
 		      	</t>
 			</xpath>
-		
+
 		</template>
 
 
@@ -56,7 +78,5 @@
 			</xpath>
 		
 		</template>
-			
-		
     </data>
 </openerp>
