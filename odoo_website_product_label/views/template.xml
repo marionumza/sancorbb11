@@ -10,7 +10,7 @@
 		
 		
 		<!-- Product item used by /slider -->
-		<template id="product_listing_page_slider" inherit_id='website_sale.products'>
+		<template id="product_listing_page_slider" inherit_id='website_sale.product'>
 
 			<!-- slider -->
 			<xpath expr="//div[@class='pwp-img']" position="inside">
