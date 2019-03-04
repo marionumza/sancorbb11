@@ -563,6 +563,7 @@ class PaymentTransactionMercadoPago(models.Model):
     def _cron_recover_abandoned_payment_mercadopago(self):
         _logger.info("Checking for Abandoned Payments from MercadoPago. Trying to recover Payment Transactions.")
         transactions = self.env['payment.transaction'].sudo().search([('provider', '=', 'mercadopago'), ('state', 'in', ['draft']),('acquirer_reference', '=', False)])
+
         print("Transactions from Cron that are abandoned : ",transactions)
         if transactions:
             for transaction in transactions:
