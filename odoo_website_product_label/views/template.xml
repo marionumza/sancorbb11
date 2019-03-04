@@ -7,9 +7,9 @@
 				<link rel="stylesheet" href="/odoo_website_product_label/static/src/css/custom.css"/>
 			</xpath>
 		</template>
-		<!-- Product item used by /slider-->
-		<template id="product_listing_page_slide" inherit_id="kingfisher.kingfisher_cat_slider_view">
-		<!-- slider-->
+		<!-- Product item used by /slider
+		<template id="product_listing_page_slide" inherit_id="kingfisher.kingfisher_cat_slider_view">-->
+		<!-- slider
 			<xpath expr="//div[@class='pwp-img']" position="inside">
 				<t t-if="slide.select_label">
 					 <div t-att-class="slide.select_label.position">
@@ -26,7 +26,7 @@
 					 </div>
 		      	</t>
 			</xpath>
-		</template>
+		</template>-->
 
 		<!-- Product item used by /shop inherit -->
 		<template id="product_listing_page_extended" inherit_id='website_sale.products_item'>
