@@ -7,13 +7,32 @@
 				<link rel="stylesheet" href="/odoo_website_product_label/static/src/css/custom.css"/>
 			</xpath>
 		</template>
-		
-		
+		<!-- Product item used by /slider-->
+		<template id="product_listing_page_slide" inherit_id="kingfisher.kingfisher_cat_slider_view">
+		<!-- slider-->
+			<xpath expr="//div[@class='pwp-img']" position="inside">
+				<t t-if="slide.select_label">
+					 <div t-att-class="slide.select_label.position">
+						<span>
+							<img class="img img-responsive"
+								t-att-src="website.image_url(slide.select_label, 'image')" t-att-title="slide.select_label.name"
+								t-attf-style="height:#{slide.select_label.height or '0px'};
+											  width:#{slide.select_label.width or '0px'};
+											  margin-left:#{slide.select_label.margin_left or '0px'};
+											  margin-right:#{slide.select_label.margin_right or '0px'};
+											  margin-top:#{slide.select_label.margin_top or '0px'};
+											  margin-bottom:#{slide.select_label.margin_bottom or '0px'};" />
+						</span>
+					 </div>
+		      	</t>
+			</xpath>
+		</template>
+
 		<!-- Product item used by /shop inherit -->
 		<template id="product_listing_page_extended" inherit_id='website_sale.products_item'>
 
 			<!-- Add Label on Shop/Product Listing Page -->
-			<xpath expr="//div[@class='ribbon-wrapper']" position="after">
+			<xpath expr="//div[@class='pwp-img']" position="inside">
 				<t t-if="product.select_label">
 					 <div t-att-class="product.select_label.position">
 						<span>
