@@ -67,10 +67,10 @@
                         <ul class="nav navbar-nav account-nav">
                             <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
                             <li>
-                                <a href="/my/home">Mi cuenta</a>
+                                <a href="/my/home" style="font-family: Open Sans">Mi cuenta</a>
                             </li>
                             <li>
-                                <a t-attf-href="/shop/cart">Chequear</a>
+                                <a t-attf-href="/shop/cart" style="font-family: Open Sans">Chequear</a>
                             </li>
                         </ul>
                         <div class="header-cart pull-right oe_cart" id="myDiv">
@@ -122,7 +122,7 @@
                                 <a href="/web/login" style="font-family: Open Sans">Iniciar sesión</a>
                             </li>
                             <li class="last" t-if="website.user_id == user_id">
-                                <a href="/web/signup" style="font-family: FontAwesome">Registrarse</a>
+                                <a href="/web/signup" style="font-family: Open Sans">Registrarse</a>
                             </li>
 
                         </ul>
@@ -178,7 +178,7 @@
                                 <div class="header-search">
                                     <form action="/shop" method="get">
                                         <t t-set="search_text" t-value="search"/>
-                                        <input class="form-control" name="search" placeholder="Buscar" t-att-value="search" type="text" />
+                                        <input class="form-control" name="search" style="font-family: FontAwesome" placeholder="Buscar" t-att-value="search" type="text" />
                                         <button class="btn btn-default">
                                             <i class="fa fa-search"/>
                                             <span class="oe_search_found" />
