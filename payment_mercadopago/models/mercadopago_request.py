@@ -8,6 +8,8 @@ from odoo import _
 from odoo.exceptions import UserError, ValidationError
 import logging
 _logger = logging.getLogger(__name__)
+
+
 class MecradoPagoPayment():
 
     def __init__(self, acquirer):
