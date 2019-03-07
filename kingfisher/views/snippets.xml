@@ -254,8 +254,8 @@
                                     </t>
                                 </ul>
                                 <div class="view">
-                                    <div class="shopping-cart">
-                                        <a href="#">
+                                     <div class="shopping-cart">
+                                        <a t-attf-href="/shop/product/#{ slug(slide) }">
                                             <img alt="Shopping-cart" src="/kingfisher/static/src/img/cart2.png" title="Shopping Cart"/>
                                         </a>
                                     </div>
@@ -269,7 +269,11 @@
                                 </p>
                                 <p class="price">
                                     <span class="price">
-                                        <span t-field="slide.lst_price"
+                                     <t t-if="slide.website_price_difference and website.get_current_pricelist().discount_policy == 'without_discount'">
+                                            <del class="text-danger mr8" style="white-space: nowrap;" t-field="slide.lst_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                        </t>
+
+                                        <span t-field="slide.website_price"
                                               t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                                     </span>
                                 </p>
