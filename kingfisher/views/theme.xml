@@ -70,7 +70,10 @@
                                 <a href="/my/home" style="font-family: Open Sans">Mi cuenta</a>
                             </li>
                             <li>
-                                <a t-attf-href="/shop/cart" style="font-family: Open Sans">Chequear</a>
+                                <a t-attf-href="/shop/cart" style="font-family: Open Sans">Carrito</a>
+                            </li>
+                            <li>
+                                <a t-attf-href="/shop" style="font-family: Open Sans">Comprar</a>
                             </li>
                         </ul>
                         <div class="header-cart pull-right oe_cart" id="myDiv">
