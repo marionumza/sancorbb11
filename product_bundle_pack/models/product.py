@@ -118,7 +118,7 @@ class StockMove(models.Model):
 
                     wizard = self.env['stock.change.product.qty'].create({
                         'product_id': product.id,
-                        'new_quantity': float(less),
+                        'new_quantity': float(int(less)),
                         'location_id': data.location_id.id,
                         })
                     wizard.change_product_qty()

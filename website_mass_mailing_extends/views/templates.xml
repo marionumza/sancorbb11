@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+       <template id="assets_popup" inherit_id="website.assets_frontend" name="Custom CSS">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/website_mass_mailing_extends/static/src/css/custom.css"/>
+			</xpath>
+		</template>
+
+		<template id="popup_newsletter" inherit_id="website_mass_mailing.s_newsletter_subscribe_popup">
+			<xpath expr="//div[@class='o_popup_content_dev']" position="inside">
+					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
+						ascadvfsdzfsfsdfdssdfs
+					</div>
+			</xpath>
+		</template>
+
+
+    </data>
+</odoo>
