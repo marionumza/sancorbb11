@@ -6,8 +6,8 @@
 			</xpath>
 		</template>-->
 
-		<template id="popup_newsletter" inherit_id="mass_mailing.s_newsletter_subscribe_popup">
-			<xpath expr="//div[@class='o_popup_content_dev']" position="inside">
+		<template id="popupnewsletter" inherit_id="website_mass_mailing.s_newsletter_subscribe_popup">
+			<xpath expr="//div[@class='o_popup_animated']" position="inside">
 					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
 						ascadvfsdzfsfsdfdssdfs
 					</div>
