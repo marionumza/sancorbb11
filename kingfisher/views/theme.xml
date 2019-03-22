@@ -304,9 +304,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 copyright-left">
-                            <p>Copyright © Kingfisher 
+                            <a href="www.simplexvili.com.ar"><p>Developed by SIMPLEX
                                 <span t-esc="website.get_current_year()"/>
-                                . All right reserved.</p>
+                                . Reservados todos los derechos.</p></a>
                         </div>
                         
                         <div class="col-md-6 col-sm-6 payment-icons-center">
