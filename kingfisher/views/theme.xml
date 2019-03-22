@@ -304,7 +304,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 copyright-left">
-                            <a href="https://www.simplexvili.com.ar"><p>Developed by SIMPLEX
+                            <a href="http://www.simplexvili.com.ar"><p>Developed by SIMPLEX
                                 <span t-esc="website.get_current_year()"/>
                                 . Reservados todos los derechos.</p></a>
                         </div>
