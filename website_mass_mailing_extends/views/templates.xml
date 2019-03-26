@@ -7,7 +7,7 @@
 		</template>-->
 
 		<template id="popupnewsletter" inherit_id="mass_mailing.FieldTextHtmlPopupContent">
-			<xpath expr="//div[@class='o_popup_content_dev']" position="replace">
+			<xpath expr="//div[@class='o_popup_bounce_small']" position="inside">
 					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
 						ascadvfsdzfsfsdfdssdfs
 					</div>
