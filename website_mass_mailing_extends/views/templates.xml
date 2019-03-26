@@ -6,7 +6,7 @@
 			</xpath>
 		</template>-->
 
-		<template id="popupnewsletter" inherit_id="mass_mailing.FieldTextHtmlPopupContent">
+		<template id="popupnewsletter" inherit_id="website_mass_mailing.s_newsletter_subscribe_popup">
 			<xpath expr="//div[@class='o_popup_bounce_small']" position="inside">
 					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
 						ascadvfsdzfsfsdfdssdfs
