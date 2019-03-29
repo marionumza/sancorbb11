@@ -1,0 +1,128 @@
+.date{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.labels{
+    font-size: 19px;
+    padding-top: 7px;
+    font-weight: normal;
+}
+
+#o_newsletter_popup .o_popup_modal_content .o_popup_modal_body .input-group input{
+    border-radius: 2px 2px 2px 2px !important;
+    border: solid 1.5px #00b9f2;
+}
+
+.register{
+    width: 30% !important;
+    background-color: #f6931e !important;
+    border-radius: 22px 22px 22px 22px !important;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.not_newsletter{
+    color: #666666;
+    text-decoration: underline !important;
+}
+
+.not_newsletter:hover, .not_newsletter:focus{
+    color: #666666;
+}
+
+.fa-13x{
+    font-size: 1.3em;
+    color: #01b8f1;
+    padding-top: 2px !important;
+}
+.more{
+    display: inline-flex;
+}
+
+.plus{
+    padding-left: 3px;
+}
+
+.lines{
+    padding-left: 48px;
+}
+.date_born{
+    width: 47%;
+}
+
+@media(max-width:992px){
+    #email{
+        width: 41%;
+        float: left;
+    }
+    .date{
+        width: 9%;
+        float: left;
+    }
+    .labels{
+        float: left;
+    }
+    .date_born{
+        width: 44%;
+    }
+    .lines{
+        padding-left: 57px !important;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .date{
+        width: 13%;
+        float: left;
+    }
+    #email{
+        width: 44%;
+        float: left;
+    }
+    .date_born{
+        width: 144% !important;
+    }
+    .register{
+        width: 43% !important;
+    }
+    .lines{
+       padding-left: 0px !important;
+    }
+}
+
+@media(min-width: 360px) and (max-width: 404px) {
+    .register{
+        width: 73% !important;
+    }
+    .date{
+        padding-right: 3px;
+        width: 18%;
+    }
+    .labels{
+        display: none;
+    }
+    #email{
+        width: 45%;
+    }
+    .date_born{
+        width: 129%;
+    }
+    .lines{
+        padding-left: 0px !important;
+    }
+}
+@media(min-width: 640px) and (max-width: 767px) {
+    .date{
+        width: 12%;
+    }
+    .date_born{
+        width: 133%;
+    }
+    .register{
+        width: 40% !important;
+    }
+    .lines{
+         padding-left: 0px !important;
+    }
+}
