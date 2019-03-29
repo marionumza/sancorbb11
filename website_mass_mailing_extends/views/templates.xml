@@ -1,26 +1,75 @@
 <odoo>
     <data>
-      <!-- <template id="assets_popup" inherit_id="website.assets_frontend" name="Custom CSS">
+       <template id="assets_popup_newsletter" inherit_id="website.assets_frontend" name="Custom_CSS">
 			<xpath expr="." position="inside">
-				<link rel="stylesheet" href="/website_mass_mailing_extends/static/src/css/custom.css"/>
-			</xpath>
-		</template>-->
-
-		<template id="popupnewsletter" inherit_id="website_mass_mailing.s_newsletter_subscribe_popup">
-			<xpath expr="//div[@id='tests']" position="inside">
-					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
-						ascadvfsdzfsfsdfdssdfs
-					</div>
+				<link rel="stylesheet" href="/website_mass_mailing_extends/static/css/custom.css"/>
+				<script type="text/javascript" src="/website_mass_mailing_extends/static/js/custom.js"></script>
 			</xpath>
 		</template>
 
-		<!--<template id="popupnewsletterStyle" inherit_id="mass_mailing.FieldTextHtmlPopupContent">
-			<xpath expr="//div[@class='o_popup_content_dev']" position="replace">
+		<template id="popupnewsletter" inherit_id="website_mass_mailing.s_newsletter_subscribe_popup">
+			<xpath expr="//div[@id='forms']" position="replace">
+				<div class="modal modal-dialog modal-lg fade fade-custom" id="o_newsletter_popup" tabindex="-1" role="dialog">
+					<div class="modal-content o_popup_modal_content">
+						<a href="#" class="o_popup_btn_close o_not_editable" data-dismiss="modal">&amp;times;</a>
+						<div class="o_popup_modal_body text-center">
+							<div class="o_popup_content_dev" data-oe-placeholder="Type Here ..."/>
+							<div role="form" class="input-group o_not_editable o_popup_animated o_popup_bounce_del500ms o_popup_bounce_small" t-attf-style="max-width: 87% !important;display: inherit;" >
+								<div class="col-md-5 col-md-offset-5 date_born">Fecha de nacimiendo de tú bebé</div>
+								<div class="row form-group lines">
+									<div class="col-lg-5" id="email">
+										<input type="email" name="email" class="popup_subscribe_email form-control" placeholder="Tu mail..." autofocus="autofocus"/>
+									</div>
+									<div class="col-lg-1 date">
+										<input  name="day" id="day"  class="form-control" placeholder="DD" autofocus="autofocus"/>
+									</div>
+									<div class="col-lg-1 labels">
+										<label>/</label>
+									</div>
+									<div class="col-lg-1 date">
+										<input name="month" id="month" class="form-control" placeholder="MM" autofocus="autofocus"/>
+									</div>
+									<div class="col-lg-1 labels">
+										<label >/</label>
+									</div>
+									<div class="col-lg-1 date">
+										<input  name="year" id="year" class="form-control" placeholder="AAAA" autofocus="autofocus"/>
+									</div>
+								</div>
+								<div id="more_child">
+
+								</div>
+								<div>
+									<div class="more">
+										<p>¿Tenés otro hijo? Agregá su fecha de nacimiento</p>
+										<a href="#" class="plus" id="more_button">
+											<span class="fa fa-plus-circle fa-13x"></span>
+										</a>
+									</div>
+									<br/>
+									<br/>
+									<span class="input-group-btn">
+										<a href="#" class="btn btn-success register">REGISTRARME</a>
+									</span>
+									<div>
+										<a href="#" class="not_newsletter">No quiero recibir promociones</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</xpath>
+		</template>
+
+		<template id="popupnewsletterStyle" inherit_id="mass_mailing.FieldTextHtmlPopupContent">
+			<xpath expr="//div[@id='editable_area']" position="replace">
 					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
-						ascadvfsdzfsfsdfdssdfs
+						<p>titulo</p>
 					</div>
 			</xpath>
-		</template>-->
+		</template>
 
 
     </data>
