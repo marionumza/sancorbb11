@@ -45,6 +45,7 @@
     color: #666666;
     text-decoration: underline !important;
     font-family: Open Sans;
+    font-weight: bold;
 }
 
 .not_newsletter:hover, .not_newsletter:focus{
@@ -59,6 +60,7 @@
 .more{
     display: inline-flex;
     font-family: Open Sans;
+    font-weight: bold;
 }
 
 .plus{
@@ -71,6 +73,7 @@
 .date_born{
     width: 47%;
     font-family: Open Sans;
+    font-weight: bold;
 }
 
 #email{
