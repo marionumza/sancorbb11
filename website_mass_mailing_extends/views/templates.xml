@@ -51,7 +51,7 @@
 									<span class="input-group-btn">
 										<a href="#" class="btn btn-success register">REGISTRARME</a>
 									</span>
-									<div>
+									<div class="promo">
 										<a href="#" class="not_newsletter">No quiero recibir promociones</a>
 									</div>
 								</div>
