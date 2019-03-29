@@ -1,15 +1,27 @@
 .dadys{
     font-family: inherit;
+    text-align: left;
+    font-size: 19px;
+}
+.dadys_text{
+    padding-top: 7px;
+}
+.texts_dadys{
+    font-family: Open Sans;
+    text-align: justify;
 }
 .date{
     padding-right: 0px;
     padding-left: 0px;
+    font-family: Open Sans;
 }
 
 .labels{
     font-size: 19px;
-    padding-top: 7px;
+    padding-top: 3px;
     font-weight: normal;
+    font-family: Open Sans;
+
 }
 
 #o_newsletter_popup .o_popup_modal_content .o_popup_modal_body .input-group input{
@@ -28,6 +40,7 @@
 .not_newsletter{
     color: #666666;
     text-decoration: underline !important;
+    font-family: Open Sans;
 }
 
 .not_newsletter:hover, .not_newsletter:focus{
@@ -41,6 +54,7 @@
 }
 .more{
     display: inline-flex;
+    font-family: Open Sans;
 }
 
 .plus{
@@ -52,6 +66,11 @@
 }
 .date_born{
     width: 47%;
+    font-family: Open Sans;
+}
+
+#email{
+    font-family: Open Sans;
 }
 
 @media(max-width:992px){

@@ -55,8 +55,8 @@
 										<a href="#" class="not_newsletter">No quiero recibir promociones</a>
 									</div>
 								</div>
-								<div><p class="dadys">Aviso para Papis y Mamis</p>
-								<p>Queridos Papis y Mamis: Les queremos contar que la leche materna es el mejor
+								<div class="dadys_text"><p class="dadys">Queridos Papis:</p>
+								<p class="texts_dadys">Queridos Papis y Mamis: Les queremos contar que la leche materna es el mejor
 									alimento para los lactantes y debe ser la opción preferida por su contribución
 									con la salud y con una nutrición que estimula el crecimiento y el desarrollo saludable
 									del niño. La Organización Mundial de la Salud recomienda la lactancia exclusiva durante
