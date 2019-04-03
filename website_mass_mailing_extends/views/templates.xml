@@ -14,7 +14,7 @@
 
 		<template id="children_in_account" inherit_id="portal.portal_layout">
 			<xpath expr="//div[@class='o_portal_my_details']" position="after">
-				<br/><div >Fecha de nacimiento de tú(s) bebé(s):</div>
+				<br/><div class="born">Fecha de nacimiento de tú(s) bebé(s):</div>
 				<div class="centers">
 					<t t-foreach="user_id.partner_id.children_id" t-as="childrens">
 						<div>

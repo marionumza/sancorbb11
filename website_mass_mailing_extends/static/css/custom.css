@@ -1,5 +1,9 @@
+.born{
+    font-family: Open Sans;
+}
 .centers{
     text-align: center;
+    font-family: Open Sans;
 }
 .errors{
     color: red;
