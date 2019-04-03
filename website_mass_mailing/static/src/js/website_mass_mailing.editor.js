@@ -24,7 +24,7 @@ var mass_mailing_common = options.Class.extend({
                         model: 'mail.mass_mailing.list',
                         method: 'name_search',
                         args: ['', []],
-                        context: weContext.get(), // TODO use this._rpc
+                        context: weContext.get(),
                     });
             },
         });
@@ -44,7 +44,7 @@ var mass_mailing_common = options.Class.extend({
 
 options.registry.mailing_list_subscribe = mass_mailing_common.extend({
     cleanForSave: function () {
-        this.$target.addClass('d-none');
+        this.$target.addClass("hidden");
     },
 });
 
@@ -54,10 +54,10 @@ options.registry.newsletter_popup = mass_mailing_common.extend({
     select_mailing_list: function (previewMode, value) {
         var self = this;
         return this._super(previewMode, value).then(function (mailing_list_id) {
-            self._rpc({
+            ajax.jsonRpc('/web/dataset/call', 'call', {
                 model: 'mail.mass_mailing.list',
                 method: 'read',
-                args: [[parseInt(mailing_list_id)], ['popup_content']],
+                args: [[parseInt(mailing_list_id)], ['popup_content'], weContext.get()],
             }).then(function (data) {
                 self.$target.find(".o_popup_content_dev").empty();
                 if (data && data[0].popup_content) {
@@ -84,12 +84,13 @@ web_editor.Class.include({
             }
             var content = $('#wrapwrap .o_popup_content_dev').html();
             var newsletter_id = $target.parent().attr('data-list-id');
-            this._rpc({
+            ajax.jsonRpc('/web/dataset/call', 'call', {
                 model: 'mail.mass_mailing.list',
                 method: 'write',
                 args: [
                     parseInt(newsletter_id),
                     {'popup_content':content},
+                    weContext.get()
                 ],
             });
         }
