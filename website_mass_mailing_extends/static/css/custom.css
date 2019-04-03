@@ -1,3 +1,14 @@
+.centers{
+    text-align: center;
+}
+.errors{
+    color: red;
+    font-family: Open Sans;
+    display: none
+}
+.display{
+    display: block;
+}
 .dadys{
     font-family: inherit;
     text-align: left;

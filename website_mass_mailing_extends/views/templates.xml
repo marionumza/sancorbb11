@@ -3,7 +3,25 @@
        <template id="assets_popup_newsletter" inherit_id="website.assets_frontend" name="Custom_CSS">
 			<xpath expr="." position="inside">
 				<link rel="stylesheet" href="/website_mass_mailing_extends/static/css/custom.css"/>
+
+			</xpath>
+		</template>
+		<template id="assets_inherit_javascript" inherit_id="website_mass_mailing.assets_frontend" name="Herencia javascript website mass mailing">
+			<xpath expr="//script[contains(@src,'website_mass_mailing.js')]" position="replace">
 				<script type="text/javascript" src="/website_mass_mailing_extends/static/js/custom.js"></script>
+			</xpath>
+		</template>
+
+		<template id="children_in_account" inherit_id="portal.portal_layout">
+			<xpath expr="//div[@class='o_portal_my_details']" position="after">
+				<br/><div >Fecha de nacimiento de tú(s) bebé(s):</div>
+				<div class="centers">
+					<t t-foreach="user_id.partner_id.children_id" t-as="childrens">
+						<div>
+							<span t-field="childrens.day"/> / <span t-field="childrens.month"/> / <span t-field="childrens.year"/>
+						</div>
+					</t>
+				</div>
 			</xpath>
 		</template>
 
@@ -21,24 +39,23 @@
 										<input type="email" name="email" class="popup_subscribe_email form-control" placeholder="Tu mail..." autofocus="autofocus"/>
 									</div>
 									<div class="col-lg-1 date">
-										<input  name="day" id="day"  class="form-control" placeholder="DD" autofocus="autofocus"/>
+										<input  name="day" class="form-control g" placeholder="DD" autofocus="autofocus"/>
 									</div>
 									<div class="col-lg-1 labels">
 										<label>/</label>
 									</div>
 									<div class="col-lg-1 date">
-										<input name="month" id="month" class="form-control" placeholder="MM" autofocus="autofocus"/>
+										<input name="month" class="form-control g" placeholder="MM" autofocus="autofocus"/>
 									</div>
 									<div class="col-lg-1 labels">
 										<label >/</label>
 									</div>
 									<div class="col-lg-1 date">
-										<input  name="year" id="year" class="form-control" placeholder="AAAA" autofocus="autofocus"/>
+										<input  name="year" class="form-control g" placeholder="AAAA" autofocus="autofocus"/>
 									</div>
 								</div>
-								<div id="more_child">
-
-								</div>
+								<div id="more_child"></div>
+								<div class="errors col-md-5 col-md-offset-5" id="wrong_date">Por favor verifique la(s) fecha(s)</div>
 								<div>
 									<div class="more">
 										<p>¿Tenés otro hijo? Agregá su fecha de nacimiento</p>
@@ -49,7 +66,7 @@
 									<br/>
 									<br/>
 									<span class="input-group-btn">
-										<a href="#" class="btn btn-success register">REGISTRARME</a>
+										<a href="#" class="btn btn-success register popup_subscribe_btn">REGISTRARME</a>
 									</span>
 									<div class="promo">
 										<a href="#" class="not_newsletter">No quiero recibir promociones</a>

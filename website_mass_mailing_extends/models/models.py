@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
-#
-# class website_mass_mailing_extends(models.Model):
-#     _name = 'website_mass_mailing_extends.website_mass_mailing_extends'
-#
-#     name = fields.Char()
-#     value = fields.Integer()
-# value2 = fields.Float(compute="_value_pc", store=True)
-# description = fields.Text()
-#
-# @api.depends('value')
-# def _value_pc(self):
-#     self.value2 = float(self.value) / 100
+from odoo import models, fields, api
+
+class Partners(models.Model):
+    _inherit = 'res.partner'
+
+    children_id = fields.One2many('children.children', 'partner_ids', 'Childrens', store=True)
+
+class children(models.Model):
+     _name = 'children.children'
+
+     day = fields.Char()
+     month = fields.Char()
+     year = fields.Char()
+     partner_ids = fields.Many2one('res.partner', 'Partner', store=True)
+

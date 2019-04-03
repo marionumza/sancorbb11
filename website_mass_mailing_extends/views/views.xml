@@ -1,60 +1,22 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="website_mass_mailing_extends.list">
-      <field name="name">website_mass_mailing_extends list</field>
-      <field name="model">website_mass_mailing_extends.website_mass_mailing_extends</field>
+    <record id="res_partner_children_form_view" model="ir.ui.view">
+      <field name="name">partner.children</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+        <notebook position='inside'>
+          <page string='Hijos'>
+            <field name="children_id" widget="one2many_list">
+              <tree editable= "bottom" create="false" edit="false">
+                 <field name="day"/>
+                 <field name="month"/>
+                 <field name="year"/>
+              </tree>
+            </field>
+          </page>
+        </notebook>
       </field>
     </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="website_mass_mailing_extends.action_window">
-      <field name="name">website_mass_mailing_extends window</field>
-      <field name="res_model">website_mass_mailing_extends.website_mass_mailing_extends</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="website_mass_mailing_extends.action_server">
-      <field name="name">website_mass_mailing_extends server</field>
-      <field name="model_id" ref="model_website_mass_mailing_extends_website_mass_mailing_extends"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="website_mass_mailing_extends" id="website_mass_mailing_extends.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="website_mass_mailing_extends.menu_1" parent="website_mass_mailing_extends.menu_root"/>
-    <menuitem name="Menu 2" id="website_mass_mailing_extends.menu_2" parent="website_mass_mailing_extends.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="website_mass_mailing_extends.menu_1_list" parent="website_mass_mailing_extends.menu_1"
-              action="website_mass_mailing_extends.action_window"/>
-    <menuitem name="Server to list" id="website_mass_mailing_extends" parent="website_mass_mailing_extends.menu_2"
-              action="website_mass_mailing_extends.action_server"/>
-    -->
   </data>
 </odoo>

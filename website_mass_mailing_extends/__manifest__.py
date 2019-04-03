@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','website_mass_mailing','mass_mailing'],
+    'depends': ['base', 'website_mass_mailing', 'mass_mailing'],
 
     # always loaded
     'data': [
