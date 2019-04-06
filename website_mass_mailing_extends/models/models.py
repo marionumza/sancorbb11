@@ -14,4 +14,4 @@ class children(models.Model):
      month = fields.Char()
      year = fields.Char()
      partner_ids = fields.Many2one('res.partner', 'Partner', store=True)
-
+     name = fields.Char()

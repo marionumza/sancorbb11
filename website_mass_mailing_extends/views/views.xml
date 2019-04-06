@@ -9,7 +9,8 @@
           <page string='Hijos'>
             <field name="children_id" widget="one2many_list">
               <tree editable= "bottom" edit="false">
-                 <field name="day"/>
+                <field name="name"/>
+                <field name="day"/>
                  <field name="month"/>
                  <field name="year"/>
               </tree>
