@@ -1,0 +1,121 @@
+/*#cookie-bar {background:#111111; height:auto; line-height:24px; color:#eeeeee; text-align:center; padding:3px 0;}
+#cookie-bar.fixed {position:fixed; top:0; left:0; width:100%;}
+#cookie-bar.fixed.bottom {bottom:0; top:auto;}
+#cookie-bar p {margin:0; padding:0;}
+#cookie-bar a {color:#ffffff; display:inline-block; border-radius:3px; text-decoration:none; padding:0 6px; margin-left:8px;}
+#cookie-bar .cb-enable {background:#007700;}
+#cookie-bar .cb-enable:hover {background:#009900;}
+#cookie-bar .cb-disable {background:#990000;}
+#cookie-bar .cb-disable:hover {background:#bb0000;}
+#cookie-bar .cb-policy {background:#0033bb;}
+#cookie-bar .cb-policy:hover {background:#0055dd;}*/
+
+#cookie-bar {
+	padding: 20px;
+	z-index: 9999;
+	background: #111;
+}
+.cookie-bar {
+	position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 99999;
+}
+.cookie-bar p {
+	margin: 0;
+}
+.cookie-bar p label { padding: 0; margin: 0 12px 0 0; font-weight: normal; color: #fff; vertical-align: middle; }
+.cookie-bar p a { display: inline-block; vertical-align: middle; padding: 5px 10px; color: #fff; line-height: normal; text-transform: uppercase; font-size: 13px; margin: 0 5px; }
+.cookie-bar p a.cb-disable {background: #ec5959;}
+/*.cookie-bar p a.cb-enable {background: #42c142;} */
+.cookie-bar p a.cb-policy {background: #000000; color: #fff; font-size: 12px;} 
+.cookie-bar p a.cb-policy:hover {font-weight: bold;} 
+
+
+
+.cookie-bar.bottom_cookie{
+	top: auto;
+	bottom: 0;
+}
+
+.cookie-bar.top_right_cookie {
+	width: auto;
+	right: 0;
+    left: auto;
+    top: 0;
+}
+.cookie-bar.top_right_cookie #cookie-bar  {
+	width: 340px;
+	padding: 20px;
+}
+
+.cookie-bar.top_right_cookie p label {
+	margin: 0 0 10px 0;
+}
+.cookie-bar.top_right_cookie p a {
+	margin: 5px;
+}
+
+
+
+
+.cookie-bar.top_left_cookie {
+	width: auto;
+	right: auto;
+    left: 0;
+    top: 0;
+}
+.cookie-bar.top_left_cookie #cookie-bar  {
+	width: 340px;
+	padding: 20px;
+}
+.cookie-bar.top_left_cookie p label {
+	margin: 0 0 10px 0;
+}
+.cookie-bar.top_left_cookie p a {
+	margin: 5px;
+}
+
+
+
+.cookie-bar.bottom_left_cookie {
+	width: auto;
+	right: auto;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    
+}
+.cookie-bar.bottom_left_cookie #cookie-bar  {
+	width: 340px;
+	padding: 20px;
+}
+
+.cookie-bar.bottom_left_cookie p label {
+	margin: 0 0 10px 0;
+}
+.cookie-bar.bottom_left_cookie p a {
+	margin: 5px;
+}
+
+
+.cookie-bar.bottom_right_cookie {
+	width: auto;
+	right: 0;
+    left: auto;
+    top: auto;
+    bottom: 0;
+}
+.cookie-bar.bottom_right_cookie #cookie-bar  {
+	width: 340px;
+	padding: 20px;
+}
+
+.cookie-bar.bottom_right_cookie p label {
+	margin: 0 0 10px 0;
+}
+.cookie-bar.bottom_right_cookie p a {
+	margin: 5px;
+}

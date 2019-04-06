@@ -1,0 +1,25 @@
+    <data noupdate="0">
+		<record id="demo_1" model="ir.ui.view">
+			<field name="name">Demo Style</field>
+			<field name="inherit_id" ref="website.assets_frontend"/>
+			<field name="active" eval="False"/>
+			<field name="use_for_theme" eval="True"/>
+			<field name="arch" type="xml">
+    <link href="/multistore_website/static/src/less/options/layout/full-width.less" rel="stylesheet" type="text/less"/>
+			</field>
+		</record>
+		<record id="demo_2" model="ir.ui.view">
+			<field name="name">Demo Style2</field>
+			<field name="inherit_id" ref="website.assets_frontend"/>
+			<field name="active" eval="False"/>
+			<field name="use_for_theme" eval="True"/>
+			<field name="arch" type="xml">
+    		    <link href="/multistore_website/static/src/less/options/layout/boxed.less" rel="stylesheet" type="text/less"/>
+			</field>
+		</record>		
+    <record model="ir.module.category" id="base.module_category_theme">
+        <field name="exclusive" eval="False"/>
+    </record>		
+
+							
+	</data>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="product_template_form_website" model="ir.ui.view">
+            <field name="name">product.template.website</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_standard_price']" position="after">
+                    <group name='website'>
+                        <field name="website_ids" widget="many2many_tags"/>
+                        <!--<field name="company_id"/>-->
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_blog_blog_website_id" model="ir.ui.view">
+            <field name="name">blog website id</field>
+            <field name="model">blog.blog</field>
+            <field name="inherit_id" ref="website_blog.view_blog_blog_form" />
+            <field name="arch" type="xml">
+                <field name="subtitle" position="after">
+                    <field name="website_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_blog_tag_website_id" model="ir.ui.view">
+            <field name="name">blog.tag website id</field>
+            <field name="model">blog.tag</field>
+            <field name="inherit_id" ref="website_blog.blog_tag_form" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="website_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+                       
+		<record id="event_type_view_form_inherit_website" model="ir.ui.view">
+		    <field name="name">event.type.view.form.inherit.website</field>
+		    <field name="model">event.type</field>
+		    <field name="inherit_id" ref="event.view_event_type_form"/>
+		    <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <group>
+	                    <field name="website_ids" widget="many2many_tags"/>
+		            </group>
+		         </field>
+		    </field>
+		</record>  
+        
+        <record id="view_blog_post_website_id" model="ir.ui.view">
+            <field name="name">blog.post website id</field>
+            <field name="model">blog.post</field>
+            <field name="inherit_id" ref="website_blog.view_blog_post_form" />
+            <field name="arch" type="xml">
+                <field name="subtitle" position="after">
+                    <field name="website_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_event_website_id" model="ir.ui.view">
+            <field name="name">event.event.website</field>
+            <field name="model">event.event</field>
+            <field name="inherit_id" ref="event.view_event_form" />
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="website_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="view_view_form_extend">
+            <field name="model">ir.ui.view</field>
+            <field name="inherit_id" ref="base.view_view_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="use_for_theme"/>
+                </field>
+
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_website_form_extend">
+            <field name="model">website</field>
+            <field name="inherit_id" ref="website.view_website_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='domain']" position="inside">
+                	<field name="favicon" widget="image"/>
+                    <field name="website_theme_logo_filename" invisible="1"/>
+                    <field name="website_theme_logo" filename="website_theme_logo_filename"/>
+                	<field name="company_id"/>
+                </xpath>
+                <xpath expr="//div[@name='domain']" position="after">
+                    <separator name="multi_website" string="Cookies"/>
+                    <group name="multi_website">
+                        <field name="enable_cookie"/>
+                        <field name="cookie_message" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>
+                        <field name="cookie_button_text" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>
+                        <field name="enable_decline_button" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>
+                        <field name="decline_button_text" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>
+                        <field name="cookie_position" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>
+                        
+                        <field name="policy_text" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>                        
+                        <field name="policy_url" attrs="{'invisible': [('enable_cookie', '!=',True)]}"/>                      
+                    </group>
+                    <separator name="multi_website" string="Theme"/>
+                    <group name="multi_website">
+                        <field name="website_theme_id" widget="selection"/>
+                    </group>
+                    <group>
+                        <button name="updated_file" string="Update" type="object"/>                     
+                    </group>
+                    <separator name="multi_website" string="reCaptcha"/>
+                    <group name="recaptcha_website">
+                        <field name="recaptcha_site_key"/>
+                        <field name="recaptcha_private_key" />
+                        <field name="enable_recaptcha_login" />                        
+                        <field name="enable_recaptcha_signup" /> 
+                        <field name="enable_recaptcha_contactus"/>                       
+                    </group> 
+                    <group string="Assignation of online orders">
+                    <field name="salesperson_id"/>
+                    <field name="salesteam_id"/>
+                	</group>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="acquirer_config" model="ir.ui.view">
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='acquirer_config']" position="inside">
+                	<field name="website_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+
+		<record id="view_delivery_carrier_form_website_delivery" model="ir.ui.view">
+		    <field name="name">delivery.carrier.website.form</field>
+		    <field name="model">delivery.carrier</field>
+		    <field name="inherit_id" ref="website_sale_delivery.view_delivery_carrier_form_website_delivery"/>
+		    <field name="arch" type="xml">
+				<field name="product_id" position="after">
+					<field name="website_ids" widget="many2many_tags"/>
+				</field>
+		    </field>
+		</record> 
+
+		<record id="product_public_category_form_view" model="ir.ui.view">
+		    <field name="name">product.public.category.form.inherit</field>
+		    <field name="model">product.public.category</field>
+		    <field name="inherit_id" ref="website_sale.product_public_category_form_view"/>
+		    <field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="website_ids" widget="many2many_tags"/>
+				</field>
+		    </field>
+		</record> 
+
+		<record id="user_form_view" model="ir.ui.view">
+		    <field name="name">res.users.form.inherit</field>
+		    <field name="model">res.users</field>
+		    <field name="inherit_id" ref="base.view_users_form"/>
+		    <field name="arch" type="xml">
+				<xpath expr="//page[@name='access_rights']//field[@name='companies_count']" position="after">
+					<field name="website_ids" widget="many2many_tags"/>
+				</xpath>
+		    </field>
+		</record>
+
+		<record id="sale_order_form_view" model="ir.ui.view">
+		    <field name="name">sale.order.form.inherit</field>
+		    <field name="model">sale.order</field>
+		    <field name="inherit_id" ref="sale.view_order_form"/>
+		    <field name="arch" type="xml">
+				<field name="client_order_ref" position="after">
+					<field name="website_ids" widget="many2many_tags"/>
+				</field>
+		    </field>
+		</record>		
+		<record id="action_website_rel" model="ir.actions.act_window">
+			<field name="name">Website Domain</field>
+			<field name="res_model">website</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="view_relation" model="ir.ui.view">
+			<field name="name">customize.active.website.tree</field>
+			<field name="model">customize.active.website</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree editable="bottom">
+					<field name="view_id"/>
+					<field name="website_ids" widget="many2many_tags"/>
+				</tree>
+			</field>
+		</record>
+
+
+
+		<record id="action_view_rel" model="ir.actions.act_window">
+			<field name="name">Theme Views</field>
+			<field name="res_model">customize.active.website</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+        <!-- <menuitem id="menu_action_views" parent="website.menu_website_global_configuration"
+            sequence="101" action="action_view_rel" name="Theme Views"/> -->
+        <record id="action_website_menu" model="ir.actions.act_window">
+            <field name="name">Website Menu</field>
+            <field name="res_model">website.menu</field>
+            <field name="context">{'search_default_my_websites':1}</field>
+        </record>             		
+            
+        <menuitem id="menu_action_websites" parent="website.menu_website_global_configuration"
+            sequence="101" action="action_website_rel" name="Website Domains"/>
+        <menuitem id="menu_action_website_menu" parent="website.menu_website_configuration"
+            sequence="101" action="action_website_menu" name="Website Menu"/>
+</odoo>
