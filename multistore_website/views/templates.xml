@@ -38,13 +38,13 @@
             	</p>
             </t>
 		</xpath>
-		<xpath expr="//div[hasclass('navbar-static-top')]//div[hasclass('navbar-header')]/a[hasclass('logo')]" position="replace">
+		<!--<xpath expr="//div[hasclass('navbar-static-top')]//div[hasclass('navbar-header')]/a[hasclass('logo')]" position="replace">
 	      	<a href="/" class="navbar-brand logo">
 	        	<span t-att-title="res_company.name">
 	          		<img class="img img-responsive" t-att-src="website.logo_image_url(website)" t-att-alt="'Logo of %s' % res_company.name"/>
 	        	</span>
 	      	</a>
-	    </xpath>
+	    </xpath>-->
 	</template>
 
 </odoo>
