@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_mass_mailing_extends_website_mass_mailing_extends,website_mass_mailing_extends.website_mass_mailing_extends,model_website_mass_mailing_extends_website_mass_mailing_extends,,1,0,0,0

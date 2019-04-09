@@ -1,0 +1,99 @@
+<odoo>
+    <data>
+       <template id="assets_popup_newsletter" inherit_id="website.assets_frontend" name="Custom_CSS">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/website_mass_mailing_extends/static/css/custom.css"/>
+
+			</xpath>
+		</template>
+		<template id="assets_inherit_javascript" inherit_id="website_mass_mailing.assets_frontend" name="Herencia javascript website mass mailing">
+			<xpath expr="//script[contains(@src,'website_mass_mailing.js')]" position="replace">
+				<script type="text/javascript" src="/website_mass_mailing_extends/static/js/custom.js"></script>
+			</xpath>
+		</template>
+
+		<template id="children_in_account" inherit_id="portal.portal_layout">
+			<xpath expr="//div[@class='o_portal_my_details']" position="after">
+				<br/><div class="born">Fecha de nacimiento de tú(s) bebé(s):</div>
+				<div class="centers">
+					<t t-foreach="user_id.partner_id.children_id" t-as="childrens">
+						<div>
+							<span t-field="childrens.day"/> / <span t-field="childrens.month"/> / <span t-field="childrens.year"/>
+						</div>
+					</t>
+				</div>
+			</xpath>
+		</template>
+
+		<template id="popupnewsletter" inherit_id="website_mass_mailing.s_newsletter_subscribe_popup">
+			<xpath expr="//div[@id='forms']" position="replace">
+				<div class="modal modal-dialog modal-lg fade fade-custom" id="o_newsletter_popup" tabindex="-1" role="dialog">
+					<div class="modal-content o_popup_modal_content">
+						<a href="#" class="o_popup_btn_close o_not_editable" data-dismiss="modal">&amp;times;</a>
+						<div class="o_popup_modal_body text-center">
+							<div class="o_popup_content_dev" data-oe-placeholder="Type Here ..."/>
+							<div role="form" class="input-group o_not_editable o_popup_animated o_popup_bounce_del500ms o_popup_bounce_small" t-attf-style="max-width: 87% !important;display: inherit;" >
+								<div class="col-md-5 col-md-offset-5 date_born">Fecha de nacimiendo de tú bebé</div>
+								<div class="row form-group lines">
+									<div class="col-lg-5" id="email">
+										<input type="email" name="email" class="popup_subscribe_email form-control" placeholder="Tu mail..." autofocus="autofocus"/>
+									</div>
+									<div class="col-lg-1 date">
+										<input  name="day" class="form-control g" placeholder="DD" autofocus="autofocus"/>
+									</div>
+									<div class="col-lg-1 labels">
+										<label>/</label>
+									</div>
+									<div class="col-lg-1 date">
+										<input name="month" class="form-control g" placeholder="MM" autofocus="autofocus"/>
+									</div>
+									<div class="col-lg-1 labels">
+										<label >/</label>
+									</div>
+									<div class="col-lg-1 date">
+										<input  name="year" class="form-control g" placeholder="AAAA" autofocus="autofocus"/>
+									</div>
+								</div>
+								<div id="more_child"></div>
+								<div class="errors col-md-5 col-md-offset-5" id="wrong_date">Por favor verifique la(s) fecha(s)</div>
+								<div>
+									<div class="more">
+										<p>¿Tenés otro hijo? Agregá su fecha de nacimiento</p>
+										<a href="#" class="plus" id="more_button">
+											<span class="fa fa-plus-circle fa-13x"></span>
+										</a>
+									</div>
+									<br/>
+									<br/>
+									<span class="input-group-btn">
+										<a href="#" class="btn btn-success register popup_subscribe_btn">REGISTRARME</a>
+									</span>
+									<div class="promo">
+										<a href="#" class="not_newsletter">No quiero recibir promociones</a>
+									</div>
+								</div>
+								<div class="dadys_text"><p class="dadys">Queridos Papis:</p>
+								<p class="texts_dadys">Queridos Papis y Mamis: Les queremos contar que la leche materna es el mejor
+									alimento para los lactantes y debe ser la opción preferida por su contribución
+									con la salud y con una nutrición que estimula el crecimiento y el desarrollo saludable
+									del niño. La Organización Mundial de la Salud recomienda la lactancia exclusiva durante
+									los primeros 6 meses de vida y continuarla por el mayor tiempo posible después de la
+									introducción de alimentos complementarios.</p></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</template>
+
+		<template id="popupnewsletterStyle" inherit_id="mass_mailing.FieldTextHtmlPopupContent">
+			<xpath expr="//div[@id='editable_area']" position="replace">
+					<div t-att-class="prueba" t-attf-style="background-color: aqua;" >
+						<p>titulo</p>
+					</div>
+			</xpath>
+		</template>
+
+
+    </data>
+</odoo>

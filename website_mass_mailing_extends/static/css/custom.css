@@ -1,0 +1,173 @@
+.born{
+    font-family: Open Sans;
+}
+.centers{
+    text-align: center;
+    font-family: Open Sans;
+}
+.errors{
+    color: red;
+    font-family: Open Sans;
+    display: none
+}
+.display{
+    display: block;
+}
+.dadys{
+    font-family: inherit;
+    text-align: left;
+    font-size: 19px;
+    color: #f6931e;
+}
+.dadys_text{
+    padding-top: 7px;
+}
+.texts_dadys{
+    font-family: Open Sans;
+    text-align: justify;
+}
+.date{
+    padding-right: 0px;
+    padding-left: 0px;
+    font-family: Open Sans;
+}
+.promo{
+    margin-top: 8px;
+}
+
+.labels{
+    font-size: 19px;
+    padding-top: 3px;
+    font-weight: normal;
+    font-family: Open Sans;
+
+}
+
+#o_newsletter_popup .o_popup_modal_content .o_popup_modal_body .input-group input{
+    border-radius: 2px 2px 2px 2px !important;
+    border: solid 1.5px #00b9f2;
+}
+
+.register{
+    width: 30% !important;
+    background-color: #f6931e !important;
+    border-radius: 22px 22px 22px 22px !important;
+    font-weight: bold;
+    font-size: 17px;
+    font-family: Open Sans;
+}
+
+.not_newsletter{
+    color: #666666;
+    text-decoration: underline !important;
+    font-family: Open Sans;
+    font-weight: bold;
+}
+
+.not_newsletter:hover, .not_newsletter:focus{
+    color: #666666;
+}
+
+.fa-13x{
+    font-size: 1.3em;
+    color: #01b8f1;
+    padding-top: 2px !important;
+}
+.more{
+    display: inline-flex;
+    font-family: Open Sans;
+    font-weight: bold;
+}
+
+.plus{
+    padding-left: 3px;
+}
+
+.lines{
+    padding-left: 48px;
+}
+.date_born{
+    width: 47%;
+    font-family: Open Sans;
+    font-weight: bold;
+}
+
+#email{
+    font-family: Open Sans;
+}
+
+@media(max-width:992px){
+    #email{
+        width: 41%;
+        float: left;
+    }
+    .date{
+        width: 9%;
+        float: left;
+    }
+    .labels{
+        float: left;
+    }
+    .date_born{
+        width: 44%;
+    }
+    .lines{
+        padding-left: 57px !important;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .date{
+        width: 13%;
+        float: left;
+    }
+    #email{
+        width: 44%;
+        float: left;
+    }
+    .date_born{
+        width: 144% !important;
+    }
+    .register{
+        width: 43% !important;
+    }
+    .lines{
+       padding-left: 0px !important;
+    }
+}
+
+@media(min-width: 360px) and (max-width: 404px) {
+    .register{
+        width: 73% !important;
+    }
+    .date{
+        padding-right: 3px;
+        width: 18%;
+    }
+    .labels{
+        display: none;
+    }
+    #email{
+        width: 45%;
+    }
+    .date_born{
+        width: 129%;
+    }
+    .lines{
+        padding-left: 0px !important;
+    }
+}
+@media(min-width: 640px) and (max-width: 767px) {
+    .date{
+        width: 12%;
+    }
+    .date_born{
+        width: 133%;
+    }
+    .register{
+        width: 40% !important;
+    }
+    .lines{
+         padding-left: 0px !important;
+    }
+}
