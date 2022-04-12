@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customize_active_website_manager,customize.active.website,model_customize_active_website,base.group_partner_manager,1,1,1,1
+access_customize_active_website_public,customize.active.website.public,model_customize_active_website,,1,0,0,0
+access_website_themefonts_manager,website.themefonts.website.manager,model_website_themefonts,base.group_partner_manager,1,1,1,1
+access_website_themefonts_public,website.themefonts.website.public,model_website_themefonts,,1,0,0,0

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="recaptcha_api" name="recaptcha API" inherit_id="portal.frontend_layout">
+        <xpath expr="//t[@t-set='head_website']" position="inside">
+            <t t-set="head">
+                <script src="https://www.google.com/recaptcha/api.js"></script>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/multistore_website/static/src/js/recaptcha.js"></script>
+        </xpath>
+    </template>
+</odoo>

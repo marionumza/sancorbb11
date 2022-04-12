@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="layout_1" inherit_id="website.layout">
+		<xpath expr="//footer" position="after">
+            <t t-set="cookiebar_message" t-value="request.website.cookie_message"/>
+            <t t-set="cookiebar_button_text" t-value="request.website.cookie_button_text"/>
+            <t t-set="cookiebar_policy_text" t-value="request.website.policy_text"/>
+            <t t-set="cookiebar_policy_url" t-value="request.website.policy_url"/>
+            <t t-set="decline_button_text" t-value="request.website.decline_button_text"/>
+            <t t-set="enable_decline_button" t-value="request.website.enable_decline_button"/>
+            <t t-if="request.website.enable_cookie">
+                <div id="cookie_bar" t-attf-class="cookie-bar #{request.website.cookie_position}">
+	            <div class="cookie-bars">
+	            </div>
+	            </div>
+	            <link href="/multistore_website/static/src/css/jquery.cookiebar.css" rel="stylesheet"/>
+	            <script type="text/javascript" src="/multistore_website/static/src/js/lib/jquery.cookiebar.js"></script>
+	            <p class="script-tag">
+				<script type="text/javascript">
+					$(document).ready(function() {
+			        $.cookieBar({
+			            'closeButton': '.my-close-button',
+			            'message': '<label><t t-esc="cookiebar_message"/></label>',
+						'policyButton' : true,
+						'policyText' : '<t t-esc="cookiebar_policy_text"/>',
+						'policyURL' : '<t t-esc="cookiebar_policy_url"/>',
+			            'acceptButton' : true,
+			            'acceptText' : '<t t-esc="cookiebar_button_text"/>',
+						'declineButton' : <t t-if="enable_decline_button">true</t><t t-if="not enable_decline_button">false</t>,
+						'declineText' : '<t t-if="enable_decline_button"><t t-if="decline_button_text"><t t-esc="decline_button_text"/></t></t>',
+						'element': '.cookie-bars',
+						
+			        });
+			        });
+			        
+            	</script>
+            	</p>
+            </t>
+		</xpath>
+		<!--<xpath expr="//div[hasclass('navbar-static-top')]//div[hasclass('navbar-header')]/a[hasclass('logo')]" position="replace">
+	      	<a href="/" class="navbar-brand logo">
+	        	<span t-att-title="res_company.name">
+	          		<img class="img img-responsive" t-att-src="website.logo_image_url(website)" t-att-alt="'Logo of %s' % res_company.name"/>
+	        	</span>
+	      	</a>
+	    </xpath>-->
+	</template>
+
+</odoo>

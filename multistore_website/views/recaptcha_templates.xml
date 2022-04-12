@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="login_form" name="Login" inherit_id="web.login">
+  <xpath expr="//form/div[hasclass('field-password')]" position="after">
+    <div class="form-group" t-if="website.enable_recaptcha_login">
+      <div t-att-data-sitekey="website.recaptcha_site_key" class="g-recaptcha" />
+    </div>
+  </xpath>
+</template>
+
+<template id="signup_form" name="Signup" inherit_id="auth_signup.signup">
+  <xpath expr="//form/div[hasclass('oe_login_buttons')]" position="before">
+    <div class="form-group" t-if="website.enable_recaptcha_signup">
+      <div t-att-data-sitekey="website.recaptcha_site_key" class="g-recaptcha" />
+    </div>
+  </xpath>
+</template>
+
+<template id="contactus_form" name="Contactus Form" inherit_id="website_crm.contactus_form">
+  <xpath expr="//form/div[hasclass('form-group')][last()]" position="before">
+    <div class="form-group" t-if="website.enable_recaptcha_contactus">
+      <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+          <div>captch</div>
+         <div t-att-data-sitekey="website.recaptcha_site_key" class="g-recaptcha" />
+      </div>
+    </div>
+  </xpath>
+</template>
+</odoo>

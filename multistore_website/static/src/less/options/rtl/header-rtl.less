@@ -1,0 +1,41 @@
+header .top-header .logo { float: right; }
+header .top-header .ht-right { float: left;}
+
+header .top-header .h-setting .h-col-hover { left: 0; right: auto; }
+header .top-header .h-search .as-search .btn { right: auto; left: 2px; }
+
+.mm-menu-head .top-block-menu .media-body { padding-right: 15px; }
+
+body header .navbar-default .navbar-nav > li {
+	text-align: right;
+}
+header .mm-maga-main.mm-mega-list .mmc-inner ul li:after {
+	left: auto;
+	right: 0;
+}
+
+
+@media (max-width:991px){ 
+	header .navbar-default .navbar-header {
+		right: auto;
+		left: 15px;
+	}
+	body header .navbar-default .navbar-collapse {
+		right: auto;
+		left: 15px;
+		.navbar-nav > li > a {
+			padding: 0 15px 0 45px;
+		}
+		.navbar-nav > li.dropdown > a .caret {
+			right: auto;
+			left: 0;
+		}
+		li.mm-mega-menu > a .caret {
+			right: auto;
+			left: 0;
+		}
+		.mm-maga-main.mm-mega-list .mmc-inner .mmc-item h2 {
+			text-align: right;
+		}
+	}
+}
